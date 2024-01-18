@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-
+import { openweather_url } from './api';
 import './weather.css'
 
 function WeatherInfo() {
     // API source: https://openweathermap.org/
-    //const url =
+    
+    const url = openweather_url;
 
     // City/Town name
     const city_name = (
