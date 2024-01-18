@@ -5,7 +5,6 @@ import './weather.css'
 
 function WeatherInfo() {
     // API source: https://openweathermap.org/
-    
     const url = openweather_url;
 
     // City/Town name
