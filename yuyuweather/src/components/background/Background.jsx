@@ -1,8 +1,9 @@
+import React from 'react';
 import './background.css';
 
 function Background() {
     return (
-        <div className="background"></div>
+        <div className="background" style={{zIndex:1}}></div>
     );
 }
 
