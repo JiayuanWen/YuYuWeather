@@ -17,7 +17,9 @@ function WeatherInfo() {
     // Temperature reading
     const temperature = (
         <div className="temperature">
-            <h1>22</h1>
+            <h1>
+                <span className="temperature-read">22</span><span className="temperature-unit"> °F</span>
+            </h1>
         </div>
     );
 
@@ -34,8 +36,10 @@ function WeatherInfo() {
     return (
         <div className="weather-info material-common" style={{zIndex:2}}>
             {city_name}
-            {temperature}
-            {weather}
+            <div className="weather-info-sub">
+                {weather}
+                {temperature}
+            </div>  
         </div>
     );
 }

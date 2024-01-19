@@ -11,7 +11,7 @@ import Background from './components/background/Background';
 import WeatherInfo from './components/weather/Weather';
 
 // Material Web componenets (See: https://m3.material.io/develop/web)
-
+import MaterialYou from './components/googleMaterial/MaterialYou';
 
 // For debug use
 import reportWebVitals from './reportWebVitals';
@@ -21,6 +21,8 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <MaterialYou/>
+
     <Background/>
     <WeatherInfo/>
   </React.StrictMode>

@@ -19,12 +19,31 @@ A simple weather app built with React and Axios
     ```
 5. wip
 
+## For devs
+### To change port
+
+1. Open `package.json` inside `yuyuweather`.
+2. Locate the following line:
+    ``` json
+    "start": "react-scripts start"
+    ```
+    Change it to:
+    ``` json
+    # For Linux & MacOS
+    "start": "PORT=desire_port react-scripts start"
+
+    # For Windows
+    "start": "set PORT=desire_port && react-scripts start"
+    ```
+    And replace `desire_port` to your desire port number.
+
 ## Credits
 ### Modules used
 * [React.js](https://react.dev/)
 * [Axios](https://axios-http.com/)
-* [Material Web](https://m3.material.io/develop/web)
 
-### API source
-* [Open Weather Map](https://openweathermap.org/)
+### Data/API source
+* Weather data obtained from [Open Weather Map](https://openweathermap.org/)
 
+### Visual/Design
+* App visual style mimics [Material You Design by Google](https://design.google/library/making-material-you); Also used componenets from [Material Web](https://m3.material.io/develop/web).
