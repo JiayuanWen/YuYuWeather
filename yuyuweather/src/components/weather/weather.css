@@ -5,9 +5,26 @@
 
     width:550px;
     
-    margin: 20px;
+    margin-top: 7vh;
+    margin-left: 40px;
 
     z-index: 1;
 
     font-size: 30px;
+}
+
+.city-name {
+    font-weight: 400;
+}
+
+.weather-info-sub {
+    margin-top: 70px;
+}
+.weather-info-sub > * > *{
+    margin: 0px;
+}
+
+.temperature-feel {
+    font-size: 20px;
+    font-weight: 400;
 }

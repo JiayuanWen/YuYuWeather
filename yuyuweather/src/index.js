@@ -6,25 +6,34 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 
 // Components
-//import App from './components/reactDefault/App';
-import Background from './components/background/Background';
-import WeatherInfo from './components/weather/Weather';
-
 // Material Web componenets (See: https://m3.material.io/develop/web)
 import MaterialYou from './components/googleMaterial/MaterialYou';
 
 // For debug use
 import reportWebVitals from './reportWebVitals';
 
+// Site components
+//import App from './components/reactDefault/App';
+import Background from './components/background/Background';
+import WeatherInfo from './components/weather/Weather';
+import Search from './components/search/Search';
+
 
 // Component rendering goes here
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    {/*Ionicons import*/}
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    {/*Google Material You*/}
     <MaterialYou/>
 
+    {/*Site contents*/}
     <Background/>
     <WeatherInfo/>
+    <Search/>
   </React.StrictMode>
 );
 

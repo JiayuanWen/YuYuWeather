@@ -1,0 +1,33 @@
+.location-search {
+    position: absolute;
+    top: 0px;
+    left: 50vw; transform: translateX(-50%);
+
+    z-index: 2;
+}
+
+.location-search-bar {
+    display: flex;
+    justify-content: center;
+    padding: 24px;
+  }
+  .location-search-bar input {
+    width: 50%;
+    min-width: 300px;
+
+    padding: 12px 24px;
+
+    border: 0px;
+    border-radius: 99px;
+
+    font-size: 16px;
+
+    outline: none;
+  }
+    .location-search-bar input:current {
+        outline: solid black;
+    }
+  .location-search-bar [list]::-webkit-list-button,
+  .location-search-bar [list]::-webkit-calendar-picker-indicator {
+    display: none !important;
+  }

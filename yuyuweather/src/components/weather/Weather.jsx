@@ -17,27 +17,28 @@ function WeatherInfo() {
     // Temperature reading
     const temperature = (
         <div className="temperature">
-            <h1>
-                <span className="temperature-read">22</span><span className="temperature-unit"> °F</span>
+            <h1 className="temperature-read">
+                <span className="temperature-read-value">22</span><span className="temperature-unit"> °F</span>
             </h1>
+            <div className="temperature-feel">
+                <span>Feels like </span><span className="temperature-feel-value">25</span><span className="temperature-unit"> °F</span>
+            </div>
         </div>
     );
 
-    // Weather description
-    const weather = (
+    // Weather description/icon
+    const weather_icon = (
         <div className="weather-desc">
-            <p>Cloud</p>
+            <h3>Cloud</h3>
         </div>
     );
-
-
 
     // Final output //
     return (
         <div className="weather-info material-common" style={{zIndex:2}}>
             {city_name}
             <div className="weather-info-sub">
-                {weather}
+                {weather_icon}
                 {temperature}
             </div>  
         </div>
