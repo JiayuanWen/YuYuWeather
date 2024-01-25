@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import './material.css'
+import './material.css';
 
 // Import of Material Web componenets place here
 

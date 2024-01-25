@@ -28,3 +28,11 @@
     font-size: 20px;
     font-weight: 400;
 }
+
+.location-search {
+    position: absolute;
+    top: 0px;
+    left: 50vw; transform: translateX(-50%);
+
+    z-index: 2;
+}

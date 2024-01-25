@@ -1,3 +1,43 @@
 :root {
-    font-family: 'Poppins', sans-serif;
+    
+    --color-primary: #bbff00;
+    --color-primary-container: color-mix(in srgb,var(--color-primary),#fff 80%);
+
+    --color-error: #aa1616;
+    --color-error-container: #ffd9d9;
+    
 }
+:root, :root input {
+    font-family: 'Poppins', sans-serif !important; 
+}
+
+/*============Custom elements============*/
+
+/*Search bar*/
+search-bar {
+    display: flex;
+    justify-content: center;
+    padding: 24px;
+}
+    search-bar input {
+        width: 50%;
+        min-width: 300px;
+
+        padding: 12px 24px;
+
+        border: 0px;
+        border-radius: 99px;
+
+        background-color: var(--color-primary-container);
+
+        font-size: 16px;
+
+        outline: none;
+    }
+    search-bar input:focus {
+        outline: solid black;
+    }
+    search-bar [list]::-webkit-list-button,
+    search-bar [list]::-webkit-calendar-picker-indicator {
+    display: none !important;
+  }

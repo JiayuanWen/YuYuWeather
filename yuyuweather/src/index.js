@@ -16,7 +16,6 @@ import reportWebVitals from './reportWebVitals';
 //import App from './components/reactDefault/App';
 import Background from './components/background/Background';
 import WeatherInfo from './components/weather/Weather';
-import Search from './components/search/Search';
 
 
 // Component rendering goes here
@@ -30,10 +29,12 @@ root.render(
     {/*Google Material You*/}
     <MaterialYou/>
 
-    {/*Site contents*/}
+    {/*Site background*/}
     <Background/>
+
+    {/*Site contents*/}
     <WeatherInfo/>
-    <Search/>
+
   </React.StrictMode>
 );
 
