@@ -21,7 +21,7 @@ function WeatherInfo() {
                 setWweatherData(response.data)
                 console.log(response.data)
             })
-            // In case it returns nothing
+            // In case problem from response (aka. OpenWeather respond with error)
             .catch((error) => {
                 setWweatherData({})
             })
@@ -35,7 +35,7 @@ function WeatherInfo() {
                     type="text" 
                     placeholder="Enter city name..." 
                     value={location}
-                    onChange={event => setLocation(event.target.value)} // Set location first, this will also modify the location query/parameter in OpenWeather URL
+                    onChange={event => setLocation(event.target.value)} // Set location first, this will then modify the location query/parameter in OpenWeather URL
                     onKeyPress={searchLocation} // Use the modified OpenWeather URL to get data
                 />
                 {/*<md-filled-text-field label="Filled" value="Value"></md-filled-text-field>*/}
