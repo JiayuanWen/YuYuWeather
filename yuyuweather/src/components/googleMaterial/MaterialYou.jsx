@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './material.css';
 
 // Import of Material Web componenets place here
@@ -11,7 +11,7 @@ function MaterialYou() {
     const fonts = (
         <>
             <link rel="preconnect" href="https://fonts.googleapis.com"/>
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"/>
             <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet"></link>
         </>
     );

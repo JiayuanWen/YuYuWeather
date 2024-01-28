@@ -16,15 +16,13 @@ import reportWebVitals from './reportWebVitals';
 //import App from './components/reactDefault/App';
 import Background from './components/background/Background';
 import WeatherInfo from './components/weather/Weather';
+import Settings from './components/settings/Settings';
 
 
 // Component rendering goes here
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {/*Ionicons import*/}
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
     {/*Google Material You*/}
     <MaterialYou/>
@@ -34,6 +32,7 @@ root.render(
 
     {/*Site contents*/}
     <WeatherInfo/>
+    <Settings/>
 
   </React.StrictMode>
 );

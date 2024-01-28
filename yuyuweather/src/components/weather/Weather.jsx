@@ -1,16 +1,18 @@
-import React, {useState} from 'react';
+import React, {createElement, useState} from 'react';
 import axios from 'axios';
 import { openweather_url } from './api';
-import './weather.css'
+import './weather.css';
+import { weatherIcon } from './weatherIcon';
+
+var debug_output = true;
 
 function WeatherInfo() {
-    const [weather_data, setWweatherData] = useState({});
+    const [weather_data, setWeatherData] = useState({});
     const [location, setLocation] = useState('');
 
     // API source: https://openweathermap.org/
-    // 
     const url = openweather_url(location);
-    console.log(weather_data);
+    //debug_output ? console.log("OpenWeather URL:"+url) : void(0);
 
     // Location search bar & handle
     const searchLocation = (event) => {
@@ -18,25 +20,31 @@ function WeatherInfo() {
             axios.get(url)
             // Get responses fron OpenWeather URL with location set
             .then((response) => {
-                setWweatherData(response.data)
-                console.log(response.data)
+                setWeatherData(response.data)
+                debug_output ? console.log("OpenWeather URL:"+url) : void(0);
+                debug_output ? (() => {console.log(`OpenWeather Response:`);console.log(response.data)})() : void(0);
             })
-            // In case problem from response (aka. OpenWeather respond with error)
+            // In case OpenWeather respond with error 400 or 404
             .catch((error) => {
-                setWweatherData({})
+                setWeatherData({})
             })
         }
     }
     const search_bar = (
         <div className="location-search">
-            <search-bar className="location-search-bar">
+            <search-bar class="location-search-bar">
                 <input 
                     id="location-search-input" 
                     type="text" 
                     placeholder="Enter city name..." 
                     value={location}
-                    onChange={event => setLocation(event.target.value)} // Set location first, this will then modify the location query/parameter in OpenWeather URL
-                    onKeyPress={searchLocation} // Use the modified OpenWeather URL to get data
+                    // Set location first, this will then modify the location query/parameter in OpenWeather URL
+                    onChange={(event) => {
+                        setLocation(event.target.value); 
+                        debug_output ? console.log(event.target.value) : void(0);
+                    }} 
+                    // Use the modified OpenWeather URL to get data
+                    onKeyPress={searchLocation} 
                 />
                 {/*<md-filled-text-field label="Filled" value="Value"></md-filled-text-field>*/}
             </search-bar>
@@ -47,7 +55,7 @@ function WeatherInfo() {
     // City/Town name
     const city_name = (
         <div className="city-name">
-            {weather_data.main ? <p>{weather_data.name}</p> : <p>...</p>}
+            {weather_data.main ? <p>{weather_data.name}</p> : <p></p>}
             
         </div>
     );
@@ -66,7 +74,7 @@ function WeatherInfo() {
         :
             <div className="temperature">
                 <h1 className="temperature-read">
-                    <span className="temperature-read-value">--</span><span className="temperature-unit"> °F</span>
+                    {/*<span className="temperature-read-value"></span><span className="temperature-unit"> °F</span>*/}
                 </h1>
                 <div className="temperature-feel">
                     <span></span>
@@ -75,16 +83,21 @@ function WeatherInfo() {
     );
 
     // Weather description/icon
+    if (weather_data.weather) {
+        debug_output ? console.log(weatherIcon(weather_data.weather[0].main)) : void(0);
+    }
     const weather_icon = (
-        weather_data.main ?
+        weather_data.weather ?
             <div className="weather-desc">
-                <h3>{weather_data.weather.main}</h3>
+                {/*Weather description is stored in an element of the array[size 1] named `weather`, so we have `[0]`*/}
+                <span>{weatherIcon(weather_data.weather[0].main)}</span>
             </div>
         :
             <div className="weather-desc">
-                <h3></h3>
+                <span>{weatherIcon("None")}</span>
             </div>
     );
+    
 
     // Final output //
     return (

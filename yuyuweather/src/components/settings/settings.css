@@ -1,0 +1,34 @@
+.settings-icon {
+    position: fixed;
+    right: 10px;
+    top: 14px;
+    
+    background-color: rgba(240, 248, 255, 0);
+
+    font-size: 40px;
+    color:black;
+
+    border-radius: 999px;
+    border-style: none;
+    
+    z-index: 2;
+
+    transition: transform 1s ease-in-out;
+}
+@media only screen and (max-width: 477px) {
+    .settings-icon {
+        position: fixed;
+        right: 10px;
+        top: 80px;
+
+    }
+}
+    .settings-icon:hover {
+        cursor: pointer;
+    }
+.settings-icon > ion-icon {
+    transition: transform 1s ease-in-out;
+}
+    .settings-icon:hover > ion-icon {
+        transform: rotate(360deg);
+    }
