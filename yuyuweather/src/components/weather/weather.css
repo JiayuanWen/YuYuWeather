@@ -69,6 +69,17 @@
         max-width: 330px; transform: translateX(0);
     }
 }
+#search-icon {
+    position: absolute;
+    top: 13px;
+    right: 12px;
+}
+    #search-icon:hover {
+        cursor: pointer;
+    }
+    #search-icon:active {
+        cursor: progress;
+    }
 
 .weather-desc {
     width: 1px;

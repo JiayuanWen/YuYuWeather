@@ -4,11 +4,12 @@ import { openweather_url } from './api';
 import './weather.css';
 import { weatherIcon } from './weatherIcon';
 
-var debug_output = true;
+const debug_output = true;
 
 function WeatherInfo() {
     const [weather_data, setWeatherData] = useState({});
     const [location, setLocation] = useState('');
+    const [search_button_state, setSearchButtonState] = useState('false');
 
     // API source: https://openweathermap.org/
     const url = openweather_url(location);
@@ -16,8 +17,25 @@ function WeatherInfo() {
 
     // Location search bar & handle
     const searchLocation = (event) => {
-        if (event.key === 'Enter') {
-            axios.get(url)
+        debug_output ? console.log("Searching weather info from location...") : void(0);
+        
+        // Some user may execute this function by pressing the search icon, we make sure the function
+        // don't check for key press (event.key) since there is none. 
+
+        // Since this function executes on every key the user presses (onKeyPress in <input/>),
+        // we only truly execute this if user pressed the enter key.
+        if (!event) {
+            void(0);
+            debug_output ? console.log("Searching weather info from location...") : void(0);
+        }
+        else if (event.key === "Enter") {
+            void(0);
+        }
+        else {
+            return null;
+        }
+
+        axios.get(url)
             // Get responses fron OpenWeather URL with location set
             .then((response) => {
                 setWeatherData(response.data)
@@ -28,7 +46,6 @@ function WeatherInfo() {
             .catch((error) => {
                 setWeatherData({})
             })
-        }
     }
     const search_bar = (
         <div className="location-search">
@@ -46,7 +63,7 @@ function WeatherInfo() {
                     // Use the modified OpenWeather URL to get data
                     onKeyPress={searchLocation} 
                 />
-                {/*<md-filled-text-field label="Filled" value="Value"></md-filled-text-field>*/}
+                <span onClick={function(e) {searchLocation();}} id="search-icon" class="material-icons">search</span>
             </search-bar>
         </div>
     );

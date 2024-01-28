@@ -18,9 +18,10 @@ search-bar {
     width: 300px;
 }
     search-bar input {
-        width: 300px;
+        width: 250px;
 
         padding: 12px 24px;
+        padding-right: 50px;
 
         border: 0px;
         border-radius: 99px;
@@ -38,3 +39,14 @@ search-bar {
     search-bar [list]::-webkit-calendar-picker-indicator {
     display: none !important;
   }
+#search-icon {
+    position: absolute;
+    top: 13px;
+    right: 12px;
+}
+    #search-icon:hover {
+        cursor: pointer;
+    }
+    #search-icon:active {
+        cursor: progress;
+    }
