@@ -32,3 +32,11 @@
     .settings-icon:hover > ion-icon {
         transform: rotate(360deg);
     }
+@media only screen and (max-width: 477px) {
+    .settings-icon > ion-icon {
+        transition: transform 0s ease-in;
+    }
+        .settings-icon:hover > ion-icon {
+            transform: rotate(0deg);
+        }
+}
