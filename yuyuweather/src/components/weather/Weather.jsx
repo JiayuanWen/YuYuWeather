@@ -84,21 +84,15 @@ function WeatherInfo() {
                 <h1 className="temperature-read">
                     <span className="temperature-read-value">{Math.round(weather_data.main.temp)}</span><span className="temperature-unit"> °F</span>
                 </h1>
-                <div className="temperature-feel">
-                    <span>Feels like </span><span className="temperature-feel-value">{Math.round(weather_data.main.feels_like)}</span><span className="temperature-unit"> °F</span>
-                </div>
+                
             </div>
         :
             <div className="temperature">
                 <h1 className="temperature-read">
                     {/*<span className="temperature-read-value"></span><span className="temperature-unit"> °F</span>*/}
                 </h1>
-                <div className="temperature-feel">
-                    <span></span>
-                </div>
             </div>
     );
-
     // Weather description/icon
     if (weather_data.weather) {
         debug_output ? console.log(weatherIcon(weather_data.weather[0].main)) : void(0);
@@ -114,7 +108,42 @@ function WeatherInfo() {
                 <span>{weatherIcon("None")}</span>
             </div>
     );
-    
+
+    // Other weather readings
+    const info_extra = (
+        weather_data.main ?
+            <div className="weather-info-extra material-common" style={{zIndex:2}}>
+                <div className="temperature-feel">
+                    
+                    <span className="weather-info-extra-value">{Math.round(weather_data.main.feels_like)} <span className="temperature-unit"> °F</span></span>
+                    <div>Feels like </div>
+                </div>
+                <div className="wind">
+                     
+                    <span className="weather-info-extra-value">{weather_data.wind.speed}  <span className="wind-unit"> m/s</span></span>
+                    <div>Wind</div>
+                </div>
+                <div className="gust">
+                    
+                    <span className="weather-info-extra-value">{weather_data.wind.gust}  <span className="wind-unit"> m/s</span></span>
+                    <div>Gust</div> 
+                </div>
+                <div className="humidity">
+                    
+                    <span className="weather-info-extra-value">{weather_data.main.humidity} %</span>
+                    <div>Humidity</div>
+                </div>
+                <div className="pressure">
+                    
+                    <span className="weather-info-extra-value">{weather_data.main.pressure} hPa</span>
+                    <div>Pressure</div>
+                </div>
+            </div>
+        :
+            <>
+            </>
+
+    );
 
     // Final output //
     return (
@@ -129,6 +158,10 @@ function WeatherInfo() {
                 {temperature}
             </div>  
         </div>
+
+        
+        {info_extra}
+        
 
         </>
     );

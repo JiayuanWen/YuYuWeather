@@ -40,13 +40,6 @@
     margin: 0px;
 }
 
-.temperature-feel {
-    font-size: 20px;
-    font-weight: 400;
-
-    
-}
-
 .location-search {
     position: absolute;
     top: 10px;
@@ -69,17 +62,7 @@
         max-width: 330px; transform: translateX(0);
     }
 }
-#search-icon {
-    position: absolute;
-    top: 13px;
-    right: 12px;
-}
-    #search-icon:hover {
-        cursor: pointer;
-    }
-    #search-icon:active {
-        cursor: progress;
-    }
+
 
 .weather-desc {
     width: 1px;
@@ -94,3 +77,42 @@
 .weather-desc > * > * {
     font-size: 120px !important;
 }
+
+.weather-info-extra {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+
+    background-color: var(--color-primary-container);
+
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+
+    width: 700px;
+    height: 100px;
+
+    border-radius: 24px;
+
+    z-index: 2;
+
+    font-size: 20px;
+    font-weight: 400;
+}
+.weather-info-extra > div {
+    margin-right: 20px;
+    margin-left: 20px;
+
+    display: block;
+
+    text-align: center;
+    font-weight: 300;
+    
+    align-items: center;
+}
+
+.weather-info-extra-value {
+    font-weight: 800;
+}
+
