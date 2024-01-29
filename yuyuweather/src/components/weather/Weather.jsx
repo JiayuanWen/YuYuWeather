@@ -112,32 +112,55 @@ function WeatherInfo() {
     // Other weather readings
     const info_extra = (
         weather_data.main ?
-            <div className="weather-info-extra material-common" style={{zIndex:2}}>
-                <div className="temperature-feel">
-                    
-                    <span className="weather-info-extra-value">{Math.round(weather_data.main.feels_like)} <span className="temperature-unit"> °F</span></span>
-                    <div>Feels like </div>
-                </div>
-                <div className="wind">
-                     
-                    <span className="weather-info-extra-value">{weather_data.wind.speed}  <span className="wind-unit"> m/s</span></span>
-                    <div>Wind</div>
-                </div>
-                <div className="gust">
-                    
-                    <span className="weather-info-extra-value">{weather_data.wind.gust}  <span className="wind-unit"> m/s</span></span>
-                    <div>Gust</div> 
-                </div>
-                <div className="humidity">
-                    
-                    <span className="weather-info-extra-value">{weather_data.main.humidity} %</span>
-                    <div>Humidity</div>
-                </div>
-                <div className="pressure">
-                    
-                    <span className="weather-info-extra-value">{weather_data.main.pressure} hPa</span>
-                    <div>Pressure</div>
-                </div>
+            <div className="weather-info-extra material-common">
+                { //Feels like
+                    weather_data.main.feels_like ?
+                        <div className="temperature-feel">
+                            <span className="weather-info-extra-value">{Math.round(weather_data.main.feels_like)} <span className="temperature-unit"> °F</span></span>
+                            <div>Feels like </div>
+                        </div>
+                    :
+                        <></>
+                }
+                { //Wind speed
+                    weather_data.wind.speed ?
+                        <div className="wind">
+                            
+                            <span className="weather-info-extra-value">{weather_data.wind.speed}  <span className="wind-unit"> m/s</span></span>
+                            <div>Wind</div>
+                        </div>
+                    :
+                        <></>
+                }
+                { //Wind gust
+                    weather_data.wind.gust ?
+                        <div className="gust">
+                            <span className="weather-info-extra-value">{weather_data.wind.gust}  <span className="wind-unit"> m/s</span></span>
+                                <div>Gust</div> 
+                        </div>
+                    :
+                        <></>
+                }
+                { //Humidity
+                    weather_data.main.humidity ?
+                        <div className="humidity">
+                            
+                            <span className="weather-info-extra-value">{weather_data.main.humidity} %</span>
+                            <div>Humidity</div>
+                        </div>
+                    :
+                        <></>
+                }
+                { //Atmosphere pressure
+                    weather_data.main.pressure ?
+                        <div className="pressure">
+                            
+                            <span className="weather-info-extra-value">{weather_data.main.pressure} hPa</span>
+                            <div>Pressure</div>
+                        </div>
+                    :
+                        <></>
+                }
             </div>
         :
             <>

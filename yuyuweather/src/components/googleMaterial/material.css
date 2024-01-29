@@ -32,6 +32,14 @@ search-bar {
 
         outline: none;
     }
+    @media only screen and (max-width: 386px) {
+        search-bar {
+            width: 200px;
+        }
+        search-bar input {
+            width: 200px;
+        }
+    }
     search-bar input:focus {
         outline: solid black;
     }
@@ -43,6 +51,15 @@ search-bar {
     position: absolute;
     top: 13px;
     right: 12px;
+
+    transform: translateX(0);
+}
+@media only screen and (max-width: 386px) {
+    #search-icon {
+        position: absolute;
+        top: 13px;
+        left: 230px;
+    }
 }
     #search-icon:hover {
         cursor: pointer;
