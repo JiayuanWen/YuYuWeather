@@ -1,33 +1,74 @@
-import React, {createElement, useState} from 'react';
+import React, {createElement, useEffect, useState} from 'react';
 import axios from 'axios';
-import { openweather_url } from './api';
-import './weather.css';
+import { openweather_api } from './api';
+//import { currentLocation } from './currentLocation';
 import { weatherIcon } from './weatherIcon';
+
+import './weather.css';
 
 const debug_output = true;
 
 function WeatherInfo() {
     const [weather_data, setWeatherData] = useState({});
+    const [app_init, setAppInit] = useState('1');
     const [location, setLocation] = useState('');
     const [search_button_state, setSearchButtonState] = useState('false');
+    const [unit, setUnit] = useState('imperial');
 
+    // Weather info source
     // API source: https://openweathermap.org/
-    const url = openweather_url(location);
-    //debug_output ? console.log("OpenWeather URL:"+url) : void(0);
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${openweather_api()}&units=${unit}`;
+    
+    // Set user location as default
+    // API source: https://ip-api.com/
+    const currentLocation = (event) => {
+
+        // Get location data from api
+        axios.get(`http://ip-api.com/json/?fields=status,message,query,country,city`)
+        .then((response) => {
+            debug_output ? (() => {console.log(`Current location data:`);console.log(response.data)})() : void(0);
+            setLocation(response.data.city);
+        })
+        .catch((error) => {
+            void(0);
+        },[])
+        
+    }
+    // For strange use of useEffect below, see https://www.w3schools.com/react/react_useeffect.asp
+    //
+    // Set location variable to user's current city on app first launch.
+    useEffect(()=>{
+        currentLocation();
+    },[]);
+    // Render the page to latest state after above useEffect changes location variable (React stays one step behind).
+    // The app_init acts as signal flag to prevent below useEffect from executing a function twice. Normally, it will execute 
+    // once on app start, then the useEffect() above along with currentLocation() causes it to execute again 
+    // due to change in `location` variable (which this useEffect detects changes to).
+    useEffect(()=>{
+        if (app_init === '1') {
+            void(0);
+            setAppInit('2');
+        }
+        else if (app_init === '2') {
+            searchLocation();
+            setAppInit('x');
+        }
+        else {
+            void(0);
+        }
+        
+    },[location]);
 
     // Location search bar & handle
     const searchLocation = (event) => {
-        debug_output ? console.log("Searching weather info from location...") : void(0);
         
         // Some user may execute this function by pressing the search icon, we make sure the function
-        // don't check for key press (event.key) since there is none. 
-
-        // Since this function executes on every key the user presses (onKeyPress in <input/>),
-        // we only truly execute this if user pressed the enter key.
+        // don't check for key press (event.key) since there is none (prevent null variable error). 
         if (!event) {
             void(0);
-            debug_output ? console.log("Searching weather info from location...") : void(0);
         }
+        // Since this function executes on every key the user presses (onKeyPress in <input/>),
+        // we only truly execute this if user pressed the enter key.
         else if (event.key === "Enter") {
             void(0);
         }
@@ -35,6 +76,7 @@ function WeatherInfo() {
             return null;
         }
 
+        debug_output ? console.log("Searching weather info from location...") : void(0);
         axios.get(url)
             // Get responses fron OpenWeather URL with location set
             .then((response) => {
@@ -54,14 +96,20 @@ function WeatherInfo() {
                     id="location-search-input" 
                     type="text" 
                     placeholder="Enter city name..." 
-                    value={location}
+                    //value={location}
                     // Set location first, this will then modify the location query/parameter in OpenWeather URL
                     onChange={(event) => {
                         setLocation(event.target.value); 
                         debug_output ? console.log(event.target.value) : void(0);
                     }} 
-                    // Use the modified OpenWeather URL to get data
-                    onKeyPress={searchLocation} 
+                    // Use the finished OpenWeather URL to get data
+                    onKeyUp={(event) => {
+                        console.log(event.code);
+                        if (event.code === "Enter") {
+                            console.log("Executed");
+                            searchLocation();
+                        }
+                    }} 
                 />
                 <span onClick={function(e) {searchLocation();}} id="search-icon" class="material-icons">search</span>
             </search-bar>
