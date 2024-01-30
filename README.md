@@ -47,16 +47,16 @@ A simple weather app built with React and Axios.
     export {openweather_api};
 
     ```
-    Replace `(API)` with the API key you got from https://home.openweathermap.org/api_keys. Your final URL should look something like this:
+    Replace `(API)` with the API key you got from https://home.openweathermap.org/api_keys. Save the file after making your changes.
 
-11. Save the file after making your changes. On your terminal, run the following command to start the project:
+11. On your terminal, run the following command to start the project:
     ``` bash
     npm start
     ```
-12. The app should start on your default browser after a while. If not, on your browser, type in `localhost:3000` on the URL bar.
-    >[!Note]
+    The app should start on your default browser after a while. If not, on your browser, type in `localhost:3000` on the URL bar.
+    >**Note**
     >
-    > Your port may differ if you changed it following the *For devs* section.
+    > Your localhost port may differ if you changed it following the *For devs* section.
 
 </details>
 
