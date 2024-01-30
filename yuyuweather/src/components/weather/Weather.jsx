@@ -41,18 +41,21 @@ function WeatherInfo() {
         currentLocation();
     },[]);
     // Render the page to latest state after above useEffect changes location variable (React stays one step behind).
-    // The app_init acts as signal flag to prevent below useEffect from executing a function twice. Normally, it will execute 
-    // once on app start, then the useEffect() above along with currentLocation() causes it to execute again 
-    // due to change in `location` variable (which this useEffect detects changes to).
+    // `app_init` acts as signal flag to prevent functions from undesirably execute more than once.
     useEffect(()=>{
+        // Hook executed due to app initial launch
         if (app_init === '1') {
             void(0);
             setAppInit('2');
         }
+        // Change to `location` variable from currentLocation() causes another execution of this hook in the same
+        // instance, we take this oppotunity to render the page to latest state with getWeatherData().
         else if (app_init === '2') {
-            searchLocation();
+            getWeatherData();
             setAppInit('x');
         }
+        // Every subsequence changes to `location` via the search bar will trigger this hook. We don't want that,
+        // so this hook will do nothing at this point and onward.
         else {
             void(0);
         }
@@ -60,7 +63,7 @@ function WeatherInfo() {
     },[location]);
 
     // Location search bar & handle
-    const searchLocation = (event) => {
+    const getWeatherData = (event) => {
         
         // Some user may execute this function by pressing the search icon, we make sure the function
         // don't check for key press (event.key) since there is none (prevent null variable error). 
@@ -96,7 +99,8 @@ function WeatherInfo() {
                     id="location-search-input" 
                     type="text" 
                     placeholder="Enter city name..." 
-                    //value={location}
+                    //value={location} // Causes glitched output, unuse for now.
+
                     // Set location first, this will then modify the location query/parameter in OpenWeather URL
                     onChange={(event) => {
                         setLocation(event.target.value); 
@@ -107,11 +111,11 @@ function WeatherInfo() {
                         console.log(event.code);
                         if (event.code === "Enter") {
                             console.log("Executed");
-                            searchLocation();
+                            getWeatherData();
                         }
                     }} 
                 />
-                <span onClick={function(e) {searchLocation();}} id="search-icon" class="material-icons">search</span>
+                <span onClick={function(e) {getWeatherData();}} id="search-icon" class="material-icons">search</span>
             </search-bar>
         </div>
     );
