@@ -41,13 +41,13 @@ A simple weather app built with React and Axios.
 10. Copy this script into `api.js`:
     ``` javascript
     const openweather_api = () => {
-        return `(API)`;
+        return `API`;
     }
 
     export {openweather_api};
 
     ```
-    Replace `(API)` with the API key you got from https://home.openweathermap.org/api_keys. Save the file after making your changes.
+    Replace `API` with the API key you got from https://home.openweathermap.org/api_keys. Save the file after making your changes.
 
 11. On your terminal, run the following command to start the project:
     ``` bash
@@ -61,7 +61,11 @@ A simple weather app built with React and Axios.
 </details>
 
 ## For devs
-### To change port
+
+<details>
+<summary>To change localhost port</summary>
+
+### To change localhost port
 
 1. Open `package.json` inside `yuyuweather`.
 2. Locate the following line:
@@ -71,12 +75,14 @@ A simple weather app built with React and Axios.
     Change it to:
     ``` json
     # For Linux & MacOS
-    "start": "PORT=desire_port react-scripts start"
+    "start": "PORT=<desire_port> react-scripts start"
 
     # For Windows
-    "start": "set PORT=desire_port && react-scripts start"
+    "start": "set PORT=<desire_port> && react-scripts start"
     ```
-    And replace `desire_port` to your desire port number.
+    And replace `<desire_port>` to your desire port number.
+
+</details>
 
 ## Credits
 ### Modules used
