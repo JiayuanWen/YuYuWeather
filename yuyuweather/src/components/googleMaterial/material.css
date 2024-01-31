@@ -5,6 +5,10 @@
 
     --color-error: #aa1616;
     --color-error-container: #ffd9d9;
+
+    
+    --border-radius-container: 24px;
+    --border-radius-input: 99px;
     
 }
 :root, :root input {

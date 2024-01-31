@@ -18,24 +18,29 @@ import Background from './components/background/Background';
 import WeatherInfo from './components/weather/Weather';
 import Settings from './components/settings/Settings';
 
-
 // Component rendering goes here
+function App() {
+  return (
+    <>
+
+      {/*Google Material You*/}
+      <MaterialYou/>
+
+      {/*Site background*/}
+      <Background/>
+
+      {/*Site contents*/}
+      <WeatherInfo/>
+      <Settings/>
+
+    </>
+  );
+}
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   //<React.StrictMode>
-  <>
-
-    {/*Google Material You*/}
-    <MaterialYou/>
-
-    {/*Site background*/}
-    <Background/>
-
-    {/*Site contents*/}
-    <WeatherInfo/>
-    <Settings/>
-
-  </>
+    <App/>
   //</React.StrictMode>
 );
 

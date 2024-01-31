@@ -1,7 +1,10 @@
 import React, {createElement, useEffect, useState} from 'react';
 import axios from 'axios';
+
+import NoConnectionPrompt from '../error_noConnection/NoConnection';
+import InvalidQueryPrompt from '../error_invalidQuery/InvalidQuery';
+
 import { openweather_api } from './api';
-//import { currentLocation } from './currentLocation';
 import { weatherIcon } from './weatherIcon';
 
 import './weather.css';
@@ -11,6 +14,7 @@ const debug_output = true;
 function WeatherInfo() {
     const [weather_data, setWeatherData] = useState({});
     const [app_init, setAppInit] = useState('1');
+    const [app_status, setStatus] = useState('Initial');
     const [location, setLocation] = useState('');
     const [search_button_state, setSearchButtonState] = useState('false');
     const [unit, setUnit] = useState('imperial');
@@ -27,10 +31,14 @@ function WeatherInfo() {
         axios.get(`http://ip-api.com/json/?fields=status,message,query,country,city`)
         .then((response) => {
             debug_output ? (() => {console.log(`Current location data:`);console.log(response.data)})() : void(0);
+
             setLocation(response.data.city);
+            setStatus('Ok');
         })
         .catch((error) => {
-            void(0);
+            debug_output ? (() => {console.log(`Current location API error: ${error.message}`);})() : void(0);
+
+            setStatus(error.message);
         },[])
         
     }
@@ -83,13 +91,28 @@ function WeatherInfo() {
         axios.get(url)
             // Get responses fron OpenWeather URL with location set
             .then((response) => {
-                setWeatherData(response.data)
                 debug_output ? console.log("OpenWeather URL:"+url) : void(0);
                 debug_output ? (() => {console.log(`OpenWeather Response:`);console.log(response.data)})() : void(0);
+
+                setWeatherData(response.data);
+                setStatus('Ok');
             })
-            // In case OpenWeather respond with error 400 or 404
+            // In case OpenWeather respond with error
             .catch((error) => {
-                setWeatherData({})
+                debug_output ? (() => {console.log(`OpenWeather error: ${error.message}`);})() : void(0);
+
+                if (error.response) {
+                    console.log(error.response.status);
+                    setStatus(error.response.status);
+                }
+                else if (error.request) {
+                    setStatus(error.request);
+                }
+                else {
+                    setStatus(error.message);
+                }   
+                setWeatherData({});
+                
             })
     }
     const search_bar = (
@@ -98,7 +121,7 @@ function WeatherInfo() {
                 <input 
                     id="location-search-input" 
                     type="text" 
-                    placeholder="Enter city name..." 
+                    placeholder="Enter location name..." 
                     //value={location} // Causes glitched output, unuse for now.
 
                     // Set location first, this will then modify the location query/parameter in OpenWeather URL
@@ -110,7 +133,6 @@ function WeatherInfo() {
                     onKeyUp={(event) => {
                         console.log(event.code);
                         if (event.code === "Enter") {
-                            console.log("Executed");
                             getWeatherData();
                         }
                     }} 
@@ -215,9 +237,7 @@ function WeatherInfo() {
                 }
             </div>
         :
-            <>
-            </>
-
+            <></>
     );
 
     // Final output //
@@ -226,6 +246,10 @@ function WeatherInfo() {
         
         {search_bar}
 
+        <NoConnectionPrompt status={app_status}/>
+        <InvalidQueryPrompt status={app_status}/>
+
+
         <div className="weather-info material-common" style={{zIndex:2}}>
             {city_name}
             <div className="weather-info-sub">
@@ -233,8 +257,6 @@ function WeatherInfo() {
                 {temperature}
             </div>  
         </div>
-
-        
         {info_extra}
         
 

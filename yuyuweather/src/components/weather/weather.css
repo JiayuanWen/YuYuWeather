@@ -104,7 +104,7 @@
     width: 700px;
     height: 100px;
 
-    border-radius: 24px;
+    border-radius: var(--border-radius-container);
 
     z-index: 2;
 

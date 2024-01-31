@@ -1,0 +1,30 @@
+.invalid-query-prompt {
+    position: absolute;
+    left: 50vw; transform: translateX(-50%);
+    top: 35vh;
+
+    background-color: var(--color-primary-container);
+
+    border-radius: var(--border-radius-container);
+
+    width: 500px;
+    height: 150px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    z-index: 2;
+}
+.invalid-query-prompt-text {
+
+    font-size: 25px;
+    font-weight: 400;
+    text-align: center;
+}
+.invalid-query-prompt-icon {
+    font-size: 50px !important;
+}
