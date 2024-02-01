@@ -7,16 +7,16 @@ import './index.css';
 
 // Components
 // Material Web componenets (See: https://m3.material.io/develop/web)
-import MaterialYou from './components/googleMaterial/MaterialYou';
+import MaterialYou from './components/style_googleMaterial/MaterialYou';
 
 // For debug use
 import reportWebVitals from './reportWebVitals';
 
 // Site components
 //import App from './components/reactDefault/App';
-import Background from './components/background/Background';
-import WeatherInfo from './components/weather/Weather';
-import Settings from './components/settings/Settings';
+import Background from './components/style_background/Background';
+import WeatherInfo from './components/function_weather/Weather';
+import Settings from './components/function_settings/Settings';
 
 // Component rendering goes here
 function App() {
