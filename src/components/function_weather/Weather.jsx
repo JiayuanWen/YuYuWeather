@@ -117,6 +117,7 @@ function WeatherInfo() {
     }
     const search_bar = (
         <div className="location-search">
+            <md-elevation></md-elevation>
             <search-bar class="location-search-bar">
                 <input 
                     id="location-search-input" 

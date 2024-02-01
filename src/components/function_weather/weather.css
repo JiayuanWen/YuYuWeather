@@ -1,3 +1,40 @@
+.location-search {
+    position: absolute;
+    top: 10px;
+    left: 50vw; 
+
+    margin: 0 auto;
+
+    max-width: 350px; transform: translateX(-50%);
+
+    z-index: 2;
+
+    --md-elevation-level: 0;
+    border-radius: var(--border-radius-input);
+
+}
+@media only screen and (max-width: 477px) {
+    .location-search {
+        position: absolute;
+        top: 10px;
+        left:auto;
+        right: 30px; 
+
+        max-width: 330px; transform: translateX(0);
+    }
+
+    @media only screen and (max-width: 386px) {
+        .location-search {
+            right: auto;
+            left: 1px; 
+            
+            max-width: 230px;
+            
+        }
+        
+    }
+}
+
 .weather-info {
     position: absolute;
     left: 0px;
@@ -38,40 +75,6 @@
 }
 .weather-info-sub > * > *{
     margin: 0px;
-}
-
-.location-search {
-    position: absolute;
-    top: 10px;
-    left: 50vw; 
-
-    margin: 0 auto;
-
-    max-width: 350px; transform: translateX(-50%);
-
-    z-index: 2;
-
-}
-@media only screen and (max-width: 477px) {
-    .location-search {
-        position: absolute;
-        top: 10px;
-        left:auto;
-        right: 30px; 
-
-        max-width: 330px; transform: translateX(0);
-    }
-
-    @media only screen and (max-width: 386px) {
-        .location-search {
-            right: auto;
-            left: 1px; 
-            
-            max-width: 230px;
-            
-        }
-        
-    }
 }
 
 
