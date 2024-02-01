@@ -1,42 +1,32 @@
 # YuYu Weather
 A simple weather app built with React and Axios.
 
-## Run the project
+App URL: https://jiayuanwen.github.io/YuYuWeather/
+
+
+## For devs
+
 <details>
-<summary>Project execution instruction</summary>
+<summary>To run the project</summary>
 
 1. Be sure you have `nodejs` and `git` installed on your system.
-2. If you are on Linux, open the terminal; If you are on Windows, open either command prompt (cmd) or PowerShell. 
-3. Use the `cd` command to navigate to a location of your choice:
+2. Go inside the app folder:
     ``` bash
     # Linux
-    cd /path/to/location/of/choice
+    cd /path/to/YuYuWeather/yuyuweather/
 
     # Windows
-    cd "C:\path\to\location\of\choice\"
-
+    cd "<Drive Letter>:\path\to\YuYuWeather\"
     ```
-4. Clone this repository with this command:
-    ``` bash
-    git clone https://github.com/JiayuanWen/YuYuWeather.git
-    ```
-5. Go inside the app folder:
-    ``` bash
-    # Linux
-    cd ./YuYuWeather/yuyuweather/
-
-    # Windows
-    cd .\YuYuWeather\yuyuweather\
-    ```
-6. Install dependencies:
+3. Install dependencies:
     ``` bash
     npm install
     ```
-7. On an internet browser, go to https://openweathermap.org/, and register for an account.
+4. On an internet browser, go to https://openweathermap.org/, and register for an account.
 8. Go to https://openweathermap.org/api, click *Subscribe* for **Current Weather Data**, then choose Free tier. Follow any additional steps on-screen. You should then be able to see your API key at https://home.openweathermap.org/api_keys.
 9.  Back to your terminal, use a text editor of your choice (`vim`,`nano`,`kim`, etc...) to add a `api.js` file:
     ``` bash
-    sudo <text-editor> ./src/components/weather/api.js
+    <text-editor> ./src/components/weather/api.js
     ```
 10. Copy this script into `api.js`:
     ``` javascript
@@ -56,11 +46,9 @@ A simple weather app built with React and Axios.
     The app should start on your default browser after a while. If not, on your browser, type in `localhost:3000` on the URL bar.
     >**Note**
     >
-    > Your localhost port may differ if you changed it following the *For devs* section.
+    > Your localhost port is different if you changed it following the *To change localhost port* section.
 
 </details>
-
-## For devs
 
 <details>
 <summary>To change localhost port</summary>
