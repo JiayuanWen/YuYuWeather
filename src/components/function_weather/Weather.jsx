@@ -1,13 +1,20 @@
+// Essentials
 import React, {createElement, useEffect, useState} from 'react';
 import axios from 'axios';
 
+// Components
 import NoConnectionPrompt from '../error_noConnection/NoConnection';
 import InvalidQueryPrompt from '../error_invalidQuery/InvalidQuery';
 
+// Images
+import searchIcon from './search_icon.svg';
+
+// Functions
 import { openweather_api } from './api';
 import { weatherIcon } from './weatherIcon';
 import { getCoord } from './getCoordintes';
 
+// Stylesheets
 import './weather.css';
 
 const debug_output = true;
@@ -17,7 +24,6 @@ function WeatherInfo() {
     const [app_init, setAppInit] = useState('1');
     const [app_status, setStatus] = useState('Initial');
     const [location, setLocation] = useState('');
-    const [search_button_state, setSearchButtonState] = useState('false');
     const [unit, setUnit] = useState('imperial');
 
     // Weather info source
@@ -38,8 +44,18 @@ function WeatherInfo() {
             .then((response) => {
                 debug_output ? (() => {console.log(`Location API response:`);console.log(response.data);console.log("")})() : void(0);
 
-                // Some location may not have a county, if so use city name instead.
-                response.data.address.county ? setLocation(response.data.address.county) : setLocation(response.data.address.city);
+                if (response.data.address.suburb) {
+                    setLocation(response.data.address.suburb);
+                }
+                else if (response.data.address.county) {
+                    setLocation(response.data.address.county);
+                }
+                else if (response.data.address.neighbourhood) {
+                    setLocation(response.data.address.neighbourhood);
+                }
+                else if (response.data.address.city) {
+                    setLocation(response.data.address.city)
+                }
                 
                 setStatus('Ok');
             })
@@ -48,6 +64,9 @@ function WeatherInfo() {
 
                 setStatus(error.message);
             },[])
+        })
+        .catch((error) => {
+            setStatus(error.message);
         })
 
         
@@ -149,7 +168,8 @@ function WeatherInfo() {
                         }
                     }} 
                 />
-                <span onClick={function(e) {getWeatherData();}} id="search-icon" class="material-icons">search</span>
+                <img src={searchIcon} onClick={function(e) {getWeatherData();}} id="search-icon" class="material-icons"></img>
+                
             </search-bar>
         </div>
     );

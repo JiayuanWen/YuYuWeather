@@ -22,6 +22,14 @@
 
         max-width: 230px; transform: translateX(0);
     }
+    @media only screen and (max-width: 295px) {
+        .location-search {
+            left: 1px;
+    
+            max-width: 230px; transform: translateX(0);
+        }
+    
+    }
 
 }
 

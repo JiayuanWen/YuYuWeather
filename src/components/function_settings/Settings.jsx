@@ -8,6 +8,14 @@ export default function Settings() {
             <ion-icon name="settings"></ion-icon>
         </button>
     );
+
+    const settings = (
+        <div className="settings-menu">
+            
+        </div>
+    );
+
+    // Final output //
     return (
         <>
             {setting_icon}

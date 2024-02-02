@@ -18,19 +18,10 @@
 @media only screen and (max-width: 477px) {
     .settings-icon {
         position: absolute;
-        right: 10px;
-        top: 80px;
+        right: 0px;
+        top: 70px;
 
-    }
-
-    @media only screen and (max-width: 386px) {
-        .settings-icon {
-            position: absolute;
-            right: 0px;
-            top: 70px;
-
-            font-size: 30px;
-        }
+        font-size: 30px;
     }
 }
 

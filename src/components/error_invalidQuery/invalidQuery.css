@@ -19,11 +19,23 @@
 
     z-index: 2;
 }
+@media only screen and (max-width: 495px) {
+    .invalid-query-prompt {
+        width: 260px;
+        height: 200px;
+    }
+}
 .invalid-query-prompt-text {
-
     font-size: 25px;
     font-weight: 400;
     text-align: center;
+}
+@media only screen and (max-width: 495px) {
+    .invalid-query-prompt-text {
+        margin-left: 15px;
+        margin-right: 15px;
+
+    }
 }
 .invalid-query-prompt-icon {
     font-size: 50px !important;
