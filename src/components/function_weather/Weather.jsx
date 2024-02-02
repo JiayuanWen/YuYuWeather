@@ -6,6 +6,7 @@ import InvalidQueryPrompt from '../error_invalidQuery/InvalidQuery';
 
 import { openweather_api } from './api';
 import { weatherIcon } from './weatherIcon';
+import { getCoord } from './getCoordintes';
 
 import './weather.css';
 
@@ -27,19 +28,29 @@ function WeatherInfo() {
     // API source: https://ip-api.com/
     const currentLocation = (event) => {
 
-        // Get location data from api
-        axios.get(`http://ip-api.com/json/?fields=status,message,query,country,city`)
-        .then((response) => {
-            debug_output ? (() => {console.log(`Current location data:`);console.log(response.data)})() : void(0);
+        getCoord().then((response) => {
+            debug_output ? (() => {console.log(`User location data:`);console.log(response);console.log("")})() : void(0);
+            var lat = response.coords.latitude;
+            var lon = response.coords.longitude;
 
-            setLocation(response.data.city);
-            setStatus('Ok');
+            // Get location data from api
+            axios.get("https://us1.locationiq.com/v1/reverse.php?key=pk.e3db4461beb1fe1f9b33ecaa7ff62569&lat=" + lat + "&lon=" + lon + "&format=json")
+            .then((response) => {
+                debug_output ? (() => {console.log(`Location API response:`);console.log(response.data);console.log("")})() : void(0);
+
+                // Some location may not have a county, if so use city name instead.
+                response.data.address.county ? setLocation(response.data.address.county) : setLocation(response.data.address.city);
+                
+                setStatus('Ok');
+            })
+            .catch((error) => {
+                debug_output ? (() => {console.log(`Location API error: ${error.message}`);console.log("")})() : void(0);
+
+                setStatus(error.message);
+            },[])
         })
-        .catch((error) => {
-            debug_output ? (() => {console.log(`Current location API error: ${error.message}`);})() : void(0);
 
-            setStatus(error.message);
-        },[])
+        
         
     }
     // For strange use of useEffect below, see https://www.w3schools.com/react/react_useeffect.asp
@@ -92,14 +103,14 @@ function WeatherInfo() {
             // Get responses fron OpenWeather URL with location set
             .then((response) => {
                 debug_output ? console.log("OpenWeather URL:"+url) : void(0);
-                debug_output ? (() => {console.log(`OpenWeather Response:`);console.log(response.data)})() : void(0);
+                debug_output ? (() => {console.log(`OpenWeather Response:`);console.log(response.data);console.log("")})() : void(0);
 
                 setWeatherData(response.data);
                 setStatus('Ok');
             })
             // In case OpenWeather respond with error
             .catch((error) => {
-                debug_output ? (() => {console.log(`OpenWeather error: ${error.message}`);})() : void(0);
+                debug_output ? (() => {console.log(`OpenWeather error: ${error.message}`);console.log("")})() : void(0);
 
                 if (error.response) {
                     console.log(error.response.status);
