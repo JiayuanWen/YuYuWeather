@@ -1,11 +1,11 @@
 .location-search {
     position: absolute;
     top: 10px;
-    left: 50vw; 
+    left: 50vw; transform: translateX(-50%);
 
     margin: 0 auto;
 
-    max-width: 350px; transform: translateX(-50%);
+    max-width: 350px; 
 
     z-index: 2;
 
@@ -18,19 +18,54 @@
         position: absolute;
         top: 10px;
         right: auto;
-        left: 10px; 
-
-        max-width: 230px; transform: translateX(0);
+        left: 10px; transform: translateX(0);
     }
+
+
     @media only screen and (max-width: 295px) {
         .location-search {
-            left: 1px;
+            left: 1px; transform: translateX(0);
     
-            max-width: 230px; transform: translateX(0);
+            max-width: 230px; 
         }
     
     }
 
+}
+
+.location-current {
+    z-index: 2;
+
+    position: absolute;
+    top: 10px;
+    left: 50vw; transform: translateX(180px);
+
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    justify-content: center;
+
+    background-color: var(--color-primary-container);
+
+    border-radius: var(--border-radius-input);
+}
+@media only screen and (max-width: 865px) {
+    .location-current {
+        transform: translateX(-230px);
+    }
+    @media only screen and (max-width: 477px) {
+        .location-current {
+            left: 10px; transform: translateX(0);
+            top: 70px;
+        }
+    }
+}
+    .location-current:hover {
+        cursor: pointer;
+    }
+.location-current-icon {
+    width: 25px;
 }
 
 .weather-info {
@@ -48,6 +83,12 @@
 
     font-size: 30px;
     white-space: nowrap;
+}
+@media only screen and (max-width: 477px) {
+    .weather-info {
+        position: absolute;
+        top: 60px;
+    }
 }
 
 .city-name {
@@ -116,7 +157,7 @@
     .weather-info-extra {
         position: absolute;
         bottom: unset;
-        top: 450px;
+        top: 500px;
         left: 10px;
 
         margin-right: 10px;

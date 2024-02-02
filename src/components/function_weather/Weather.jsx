@@ -8,6 +8,7 @@ import InvalidQueryPrompt from '../error_invalidQuery/InvalidQuery';
 
 // Images
 import searchIcon from './search_icon.svg';
+import myLocationIcon from './my_location.svg'
 
 // Functions
 import { openweather_api } from './api';
@@ -147,7 +148,7 @@ function WeatherInfo() {
     }
     const search_bar = (
         <div className="location-search">
-            <md-elevation></md-elevation>
+            <md-ripple></md-ripple>
             <search-bar class="location-search-bar">
                 <input 
                     id="location-search-input" 
@@ -174,6 +175,22 @@ function WeatherInfo() {
         </div>
     );
     
+    // User current location button
+    const user_location = (
+        <div className='location-current'>
+            <md-ripple></md-ripple>
+            <img 
+                src={myLocationIcon} 
+                alt="Current location icon"
+                onClick={(e) => {
+                    currentLocation();
+                    setAppInit('2');
+                }}
+                className='location-current-icon'
+            ></img>
+        </div>
+        
+    );
 
     // City/Town name
     const city_name = (
@@ -276,7 +293,7 @@ function WeatherInfo() {
     return (
         <>
         
-        {search_bar}
+        {search_bar} {user_location}
 
         <NoConnectionPrompt status={app_status}/>
         <InvalidQueryPrompt status={app_status}/>
