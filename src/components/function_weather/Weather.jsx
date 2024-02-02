@@ -24,8 +24,8 @@ function WeatherInfo() {
     // API source: https://openweathermap.org/
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${openweather_api()}&units=${unit}`;
     
-    // Set user location as default
-    // API source: https://ip-api.com/
+    // Set user current location as default
+    // API source: https://locationiq.com/
     const currentLocation = (event) => {
 
         getCoord().then((response) => {

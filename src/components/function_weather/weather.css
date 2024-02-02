@@ -17,22 +17,12 @@
     .location-search {
         position: absolute;
         top: 10px;
-        left:auto;
-        right: 30px; 
+        right: auto;
+        left: 10px; 
 
-        max-width: 330px; transform: translateX(0);
+        max-width: 230px; transform: translateX(0);
     }
 
-    @media only screen and (max-width: 386px) {
-        .location-search {
-            right: auto;
-            left: 1px; 
-            
-            max-width: 230px;
-            
-        }
-        
-    }
 }
 
 .weather-info {

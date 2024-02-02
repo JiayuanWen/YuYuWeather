@@ -39,7 +39,7 @@ search-bar {
         outline: none;
 
     }
-    @media only screen and (max-width: 386px) {
+    @media only screen and (max-width: 477px) {
         search-bar {
             width: 200px;
         }
@@ -61,7 +61,7 @@ search-bar {
 
     transform: translateX(0);
 }
-@media only screen and (max-width: 386px) {
+@media only screen and (max-width: 477px) {
     #search-icon {
         position: absolute;
         top: 13px;
