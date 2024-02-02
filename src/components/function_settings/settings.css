@@ -11,7 +11,12 @@
     border-radius: 999px;
     border-style: none;
     
-    z-index: 2;
+    z-index: 4;
+
+    transition: transform 1s ease-in-out;
+}
+.settings-icon > img {
+    width: 40px;
 
     transition: transform 1s ease-in-out;
 }
@@ -23,22 +28,57 @@
 
         font-size: 30px;
     }
+    .settings-icon > img {
+        width: 35px;
+    }
 }
-
     .settings-icon:hover {
         cursor: pointer;
     }
-.settings-icon > ion-icon {
-    transition: transform 1s ease-in-out;
-}
-    .settings-icon:hover > ion-icon {
+
+    .settings-icon:hover > img {
         transform: rotate(360deg);
     }
 @media only screen and (max-width: 477px) {
-    .settings-icon > ion-icon {
+    .settings-icon > img {
         transition: transform 0s ease-in;
     }
-        .settings-icon:hover > ion-icon {
+        .settings-icon:hover > img {
             transform: rotate(0deg);
         }
+}
+
+.settings-overlay {
+    position: fixed;
+
+    z-index: 3;
+
+    height: 100%;
+    width: 100%;
+
+    background-color: rgba(255, 255, 255, 0.514);
+
+    /* Set dynamically in Settings.jsx
+    pointer-events: none;
+    opacity: 0;
+    */
+
+    transition: 0.2s;
+}
+
+.settings-menu {
+    position: fixed;
+    left: 50vw; transform: translateX(-50%);
+    top: 12vh;
+
+    z-index: 4;
+
+    background-color: var(--color-primary-container);
+
+    border-radius: var(--border-radius-container);
+
+    height: 600px;
+    width: 600px;
+
+    margin: 15px;
 }
