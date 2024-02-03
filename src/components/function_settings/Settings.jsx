@@ -4,6 +4,8 @@ import settingsIcon from './settings.svg'
 
 import './settings.css';
 
+import { HuePicker } from "react-color";
+
 export default function Settings() {
     const [settings_visible, setSettingsVisible] = useState(false);
 
@@ -31,18 +33,35 @@ export default function Settings() {
         pointerEvents: "none"
     }
     const settings = (
-        settings_visible ?
-            <div style={settings_style_visible} className="settings-overlay">
-                <div className="settings-menu">
-                
+        <div style={settings_visible ? settings_style_visible : settings_style_hide} className="settings-overlay">
+            <div className="settings-menu">
+                <div className="settings-title">Settings</div>
+
+                {/*Color theme*/}
+                <div className="settings-color">
+                    <div>App color theme</div>
+                    <HuePicker/>
+                </div>
+
+                {/*Measure unit*/}
+                <div className="settings-unit">
+                    <div>Display unit</div>
+                    
+                </div>
+
+                {/*Site language*/}
+                <div className="settings-language">
+                    <div>Site language</div>
+                    <div id="google_translate_element"></div>
+                </div>
+
+                {/*App version*/}
+                <div className="app-version">
+                    App Version: <span className="app-version-number">02021900.2024</span>
                 </div>
             </div>
-        :
-            <div style={settings_style_hide} className="settings-overlay">
-                <div className="settings-menu">
-                
-                </div>
-            </div>
+        </div>
+        
     );
 
     // Final output //

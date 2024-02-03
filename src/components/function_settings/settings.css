@@ -82,3 +82,48 @@
 
     margin: 15px;
 }
+
+/*Site title*/
+.settings-title {
+    position: absolute;
+    left: 24px;
+    top: 24px;
+
+    font-size: 35px;
+}
+
+/*Color picker*/
+.settings-color {
+    position: absolute;
+    left: 24px;
+    top: 100px;
+}
+.settings-color > div{
+    margin-bottom: 15px;
+}
+.hue-horizontal {
+    border-radius: var(--border-radius-input) !important;
+}
+
+/*Unit switcher*/
+.settings-unit {
+    position: absolute;
+    left: 24px;
+    top: 190px;
+}
+
+/*Language changer*/
+.settings-language {
+    position: absolute;
+    left: 24px;
+    top: 280px;
+}
+
+/*App version display*/
+.app-version {
+    position: absolute;
+    right: 25px;
+    bottom: 10px;
+    
+    color: gray;
+}
