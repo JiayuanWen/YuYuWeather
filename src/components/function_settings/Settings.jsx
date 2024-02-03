@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import Cookies from "universal-cookie";
 
 import settingsIcon from './settings.svg'
 
@@ -6,8 +7,11 @@ import './settings.css';
 
 import { HuePicker } from "react-color";
 
+const cookies = new Cookies();
+const debug_output = true;
+
 export default function Settings() {
-    const [app_version, setAppVersion] = useState('020301.2024');
+    const [app_version, setAppVersion] = useState('020317.2024');
     const [settings_visible, setSettingsVisible] = useState(false);
 
     // Settings icon
@@ -25,16 +29,31 @@ export default function Settings() {
     );
 
     // Color theme
-    const [color, setColor] = useState('#bbff00');
+    const [color, setColor] = useState(cookies.get('color'));
     const setting_color = (
         <div className="settings-color">
                     <div className="settings-subtitle">Color theme</div>
                     <HuePicker
                         color={color}
-                        onChangeComplete={(c) => {setColor(c.hex)}}
+                        onChangeComplete={(c) => {
+                            // Change color hue slider state
+                            setColor(c.hex);
+
+                            // Store color to cookie to remember
+                            cookies.set('color',c.hex,{ path:'/'});
+
+                            // Apply color scheme to app
+                            document.documentElement.style.setProperty('--color-primary',c.hex);
+
+                            debug_output ? console.log("Current color scheme : "+cookies.get('color')) : void(0);
+                        }}
                     />
         </div>
     );
+    // Apply color scheme from cookie at app launch
+    useEffect(() => {
+        document.documentElement.style.setProperty('--color-primary',cookies.get('color'));
+    },[]);
 
     // App version
     const app_ver = (
