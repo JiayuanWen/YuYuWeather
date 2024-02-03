@@ -13,6 +13,7 @@
 }
 :root, :root input {
     font-family: 'Poppins', sans-serif !important; 
+    --font-main: 'Poppins', sans-serif; 
 }
 
 /*============Custom elements============*/
@@ -48,7 +49,7 @@ search-bar {
         }
     }
     search-bar input:focus {
-        outline: solid black;
+        outline: none black;
     }
     search-bar [list]::-webkit-list-button,
     search-bar [list]::-webkit-calendar-picker-indicator {

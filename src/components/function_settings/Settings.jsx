@@ -7,6 +7,7 @@ import './settings.css';
 import { HuePicker } from "react-color";
 
 export default function Settings() {
+    const [app_version, setAppVersion] = useState('020301.2024');
     const [settings_visible, setSettingsVisible] = useState(false);
 
     // Settings icon
@@ -21,6 +22,25 @@ export default function Settings() {
         <button className="settings-icon" onClick={function(e) {settingsIconClick(e);}}>
             <img src={settingsIcon} alt="settings-icon"></img>
         </button>
+    );
+
+    // Color theme
+    const [color, setColor] = useState('#bbff00');
+    const setting_color = (
+        <div className="settings-color">
+                    <div className="settings-subtitle">Color theme</div>
+                    <HuePicker
+                        color={color}
+                        onChangeComplete={(c) => {setColor(c.hex)}}
+                    />
+        </div>
+    );
+
+    // App version
+    const app_ver = (
+        <div className="app-version">
+            App Version: <span className="app-version-number">{app_version}</span>
+        </div>
     );
     
     // Settings menu
@@ -38,27 +58,22 @@ export default function Settings() {
                 <div className="settings-title">Settings</div>
 
                 {/*Color theme*/}
-                <div className="settings-color">
-                    <div>App color theme</div>
-                    <HuePicker/>
-                </div>
+                {setting_color}
 
                 {/*Measure unit*/}
                 <div className="settings-unit">
-                    <div>Display unit</div>
+                    <div className="settings-subtitle">Displayed unit</div>
                     
                 </div>
 
                 {/*Site language*/}
                 <div className="settings-language">
-                    <div>Site language</div>
+                    <div className="settings-subtitle">Site language</div>
                     <div id="google_translate_element"></div>
                 </div>
 
                 {/*App version*/}
-                <div className="app-version">
-                    App Version: <span className="app-version-number">02021900.2024</span>
-                </div>
+                {app_ver}
             </div>
         </div>
         

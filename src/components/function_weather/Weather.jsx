@@ -255,15 +255,6 @@ function WeatherInfo() {
                     :
                         <></>
                 }
-                { //Wind gust
-                    weather_data.wind.gust ?
-                        <div className="gust">
-                            <span className="weather-info-extra-value">{weather_data.wind.gust}  <span className="wind-unit"> m/s</span></span>
-                                <div>Gust</div> 
-                        </div>
-                    :
-                        <></>
-                }
                 { //Humidity
                     weather_data.main.humidity ?
                         <div className="humidity">

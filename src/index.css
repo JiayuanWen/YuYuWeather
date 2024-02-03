@@ -1,7 +1,5 @@
 
 body {
-
-
   height: 100%;
 
   margin: 0;
@@ -18,4 +16,38 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/*For hiding Google Translate iframe*/
+.skiptranslate > iframe{
+  visibility: hidden !important;
+  height: 1px !important;
+}
+
+body {
+  top: 0px !important;
+}
+
+/*Google translate button style*/
+#google_translate_element {
+  display: flex;
+}
+.goog-te-gadget .goog-te-combo {
+  background-color: #ffffff;
+
+  border-style: none;
+  border-radius: var(--border-radius-input);
+
+  height: 40px;
+
+  text-align: center;
+  font-family: var(--font-main);
+
+  margin-bottom: 5px;
+}
+.goog-logo-link {
+  display:none !important;
+} 
+.goog-te-gadget{
+  color: transparent !important;
 }
