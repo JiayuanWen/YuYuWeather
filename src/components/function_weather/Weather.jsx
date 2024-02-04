@@ -18,7 +18,7 @@ import { getCoord } from './getCoordintes';
 // Stylesheets
 import './weather.css';
 
-const debug_output = true;
+const debug_output = false;
 
 function WeatherInfo() {
     const [weather_data, setWeatherData] = useState({});

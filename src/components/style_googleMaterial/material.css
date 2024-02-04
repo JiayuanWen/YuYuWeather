@@ -1,6 +1,6 @@
 :root {
     
-    --color-primary: #bbff00;
+    --color-primary: #008cff;
     --color-primary-container: color-mix(in srgb,var(--color-primary),#fff 80%);
 
     --color-error: #aa1616;

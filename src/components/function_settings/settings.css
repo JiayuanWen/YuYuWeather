@@ -119,6 +119,54 @@
     top: 280px;
 }
 
+/*Save settings button*/
+.settings-save {
+    position: absolute;
+    left: 25px;
+    bottom: 35px;
+
+    font-size: 15px;
+    text-align: center;
+
+    height: 40px;
+    width: 80px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--color-primary);
+
+    border-radius: var(--border-radius-input);
+}
+.settings-save:hover {
+    cursor: pointer;
+}
+
+/*Reset settings button*/
+.settings-reset {
+    position: absolute;
+    left: 110px;
+    bottom: 35px;
+
+    font-size: 15px;
+    text-align: center;
+
+    height: 40px;
+    width: 140px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--color-primary);
+
+    border-radius: var(--border-radius-input);
+}
+.settings-reset:hover {
+    cursor: pointer;
+}
+
 /*App version display*/
 .app-version {
     position: absolute;

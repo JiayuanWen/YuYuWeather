@@ -2,6 +2,7 @@ import React from 'react';
 
 import '@material/web/elevation/elevation'
 import '@material/web/ripple/ripple'
+import '@material/web/button/filled-button'
 
 import './material.css';
 
