@@ -76,12 +76,16 @@ App URL: https://jiayuanwen.github.io/YuYuWeather/
 ### Modules used
 * [React.js](https://react.dev/)
 * [Axios](https://axios-http.com/)
+* [Universal Cookie](https://www.npmjs.com/package/universal-cookie)
+* [React Color](https://casesandberg.github.io/react-color/)
+* [Material Web](https://m3.material.io/develop/web)
 
 ### Data/API source
 * Weather data obtained from [Open Weather Map](https://openweathermap.org/)
+* User location data obtained from [LocationIQ](https://locationiq.com/)
 
 ### Visual/Design
-* App visual style mimics [Material You Design by Google](https://design.google/library/making-material-you); Also used componenets from [Material Web](https://m3.material.io/develop/web).
+* App visual style mimics [Material You Design by Google](https://design.google/library/making-material-you).
 * Feature icons from [Ionicons](https://ionic.io/ionicons) and [Google Material Icons](https://fonts.google.com/icons).
 
 ### Special thanks

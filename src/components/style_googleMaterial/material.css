@@ -2,6 +2,7 @@
     
     --color-primary: #008cff;
     --color-primary-container: color-mix(in srgb,var(--color-primary),#fff 80%);
+    --color-primary-text: color-mix(in srgb,var(--color-primary),#000 50%);
 
     --color-error: #aa1616;
     --color-error-container: #ffd9d9;
@@ -75,3 +76,39 @@ search-bar {
     #search-icon:active {
         cursor: progress;
     }
+
+/*Buttons*/
+.material-button {
+    background-color: var(--color-primary);
+    border-radius: var(--border-radius-input);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 15px;
+    text-align: center;
+
+    height: 40px;
+    width: 80px;
+}
+.material-button-outline {
+    background-color: var(--color-primary-container);
+    border-radius: var(--border-radius-input);
+
+    border: solid black 1px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 15px;
+    text-align: center;
+    color: var(--color-primary-text) !important;
+
+    height: 40px;
+    width: 80px;
+}
+.material-button:hover, .material-button-outline:hover {
+    cursor: pointer;
+}

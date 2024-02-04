@@ -111,12 +111,25 @@
     left: 24px;
     top: 190px;
 }
+.settings-unit-options {
+    display: flex;
+    justify-content: left;
+    
+}
+.settings-unit-metric, .settings-unit-imperial {
+    position: absolute;
+
+    width: 90px !important;
+}
+.settings-unit-metric {
+    left: 95px !important;
+}
 
 /*Language changer*/
 .settings-language {
     position: absolute;
     left: 24px;
-    top: 280px;
+    top: 300px;
 }
 
 /*Save settings button*/
@@ -125,22 +138,8 @@
     left: 25px;
     bottom: 35px;
 
-    font-size: 15px;
-    text-align: center;
-
     height: 40px;
     width: 80px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background-color: var(--color-primary);
-
-    border-radius: var(--border-radius-input);
-}
-.settings-save:hover {
-    cursor: pointer;
 }
 
 /*Reset settings button*/
@@ -149,22 +148,24 @@
     left: 110px;
     bottom: 35px;
 
-    font-size: 15px;
-    text-align: center;
-
     height: 40px;
     width: 140px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background-color: var(--color-primary);
-
-    border-radius: var(--border-radius-input);
 }
 .settings-reset:hover {
     cursor: pointer;
+}
+
+/*Button click indicators*/
+.settings-indicator {
+    position: absolute;
+    left: 25px;
+    bottom: 85px;
+
+    color: rgb(0, 0, 0);
+
+    pointer-events: none;
+
+    opacity: 0;
 }
 
 /*App version display*/
