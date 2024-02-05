@@ -11,7 +11,7 @@
     border-radius: 999px;
     border-style: none;
     
-    z-index: 4;
+    z-index: 2;
 
     transition: transform 1s ease-in-out;
 }
@@ -82,6 +82,19 @@
 
     margin: 15px;
 }
+@media only screen and (max-width: 959px) {
+    .settings-menu {
+        left: 50vw; transform: translateX(-50vw);
+    }
+}
+@media only screen and (max-width: 627px) {
+    .settings-menu {
+        left: 50vw; transform: translateX(-50vw);
+
+        height: 700px;
+        width: 360px;
+    }
+}
 
 /*Site title*/
 .settings-title {
@@ -141,6 +154,19 @@
     height: 40px;
     width: 80px;
 }
+.settings-save:hover {
+    cursor: pointer;
+}
+@media only screen and (max-width: 627px) {
+    .settings-save {
+        position: absolute;
+        left: 25px;
+        bottom: 45px;
+    
+        height: 40px;
+        width: 80px;
+    }
+}
 
 /*Reset settings button*/
 .settings-reset {
@@ -154,6 +180,16 @@
 .settings-reset:hover {
     cursor: pointer;
 }
+@media only screen and (max-width: 627px) {
+    .settings-reset {
+        position: absolute;
+        left: 110px;
+        bottom: 45px;
+    
+        height: 40px;
+        width: 140px;
+    }
+}
 
 /*Button click indicators*/
 .settings-indicator {
@@ -166,6 +202,30 @@
     pointer-events: none;
 
     opacity: 0;
+}
+
+/*Disclaimer*/
+.settings-disclaimer {
+    position: absolute;
+    left: 25px;
+    bottom: 120px;
+
+    width: 500px;
+
+    font-size: small;
+    
+}
+@media only screen and (max-width: 627px) {
+    .settings-disclaimer {
+        position: absolute;
+        left: 25px;
+        bottom: 180px;
+    
+        width: 300px;
+    
+        font-size: small;
+        
+    }
 }
 
 /*App version display*/

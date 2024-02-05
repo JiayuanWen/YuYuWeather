@@ -150,6 +150,13 @@ export default function Settings() {
         </>
     );
 
+    // Settings disclaimer
+    const setting_disclaimer = (
+        <div className="settings-disclaimer">
+            <ion-icon name="alert-circle-outline"></ion-icon> This app uses cookies to remember settings. Whitelist this app from cookie deletion plugins to ensure settings get saved.
+        </div>
+    );
+
     // App version
     const app_ver = (
         <div className="app-version">
@@ -187,6 +194,7 @@ export default function Settings() {
             className="settings-overlay"
         >
             <div className="settings-menu">
+
                 <div className="settings-title">Settings</div>
 
                 {/*Color theme*/}
@@ -201,8 +209,12 @@ export default function Settings() {
                 {/*Buttons*/}
                 {setting_save} {setting_reset}
 
+                {/*Disclaimer*/}
+                {setting_disclaimer}
+
                 {/*App version*/}
                 {app_ver}
+
             </div>
         </div>
         
