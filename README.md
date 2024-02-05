@@ -1,7 +1,24 @@
 # YuYu Weather
-A simple weather app built with React and Axios.
+Minimal and easy to use weather web app, quick glance at what's above ☀️☁️☔️.
 
 App URL: https://jiayuanwen.github.io/YuYuWeather/
+
+## Features
+* ### **Weather info of your current location**
+  * Temperature
+  * Temperature (Feels Like)
+  * Wind Speed
+  * Humidity
+  * Pressure
+
+* ### **Switch between Metro and Imperial unit for readings**
+  
+* ### **Change the accent colors to your favorite color**
+  
+* ### **Light/Dark mode support**
+
+* ### **Mobile layouts**
+
 
 
 ## For devs
