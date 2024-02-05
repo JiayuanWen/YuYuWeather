@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Cookies from "universal-cookie";
 
-import settingsIcon from './settings.svg'
+import settingsIcon from './settings.svg';
+import settingsClose from './close.svg';
 
 import { HuePicker } from "react-color";
 import { brightnessCatagory } from "../misc_scripts/brightnessLevel";
@@ -14,7 +15,34 @@ import './settings.css';
 const debug_output = false;
 
 export default function Settings() {
-    const [app_version, setAppVersion] = useState('020418.2024');
+    const [app_version, setAppVersion] = useState('020510.2024');
+
+    // Settings icon
+    const [settings_visible, setSettingsVisible] = useState(false);
+    const settingsIconClick = () => {
+        settings_visible ?
+            setSettingsVisible(false)
+        :
+            setSettingsVisible(true)
+
+    }
+    const setting_icon = (
+        <button className="settings-icon" onClick={function(e) {settingsIconClick(e);}}>
+            <img src={settingsIcon} alt="settings-icon"></img>
+        </button>
+    );
+
+    // Close window
+    const setting_close = (
+        <>
+            <img 
+                className="settings-close" 
+                src={settingsClose}
+                alt="Close Settings window"
+                onClick={function(e) {settingsIconClick(e);}}
+            />
+        </>
+    );
 
     // Color theme
     const [color, setColor] = useState(cookies.get('color') ? cookies.get('color') : '#008cff');
@@ -163,21 +191,6 @@ export default function Settings() {
             App Version: <span className="app-version-number">{app_version}</span>
         </div>
     );
-
-    // Settings icon
-    const [settings_visible, setSettingsVisible] = useState(false);
-    const settingsIconClick = () => {
-        settings_visible ?
-            setSettingsVisible(false)
-        :
-            setSettingsVisible(true)
-
-    }
-    const setting_icon = (
-        <button className="settings-icon" onClick={function(e) {settingsIconClick(e);}}>
-            <img src={settingsIcon} alt="settings-icon"></img>
-        </button>
-    );
     
     // Settings menu
     const settings_style_visible = {
@@ -194,6 +207,9 @@ export default function Settings() {
             className="settings-overlay"
         >
             <div className="settings-menu">
+
+                {/*Close window button*/}
+                {setting_close}
 
                 <div className="settings-title">Settings</div>
 

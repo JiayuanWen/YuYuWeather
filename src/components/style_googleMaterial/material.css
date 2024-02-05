@@ -1,6 +1,7 @@
 :root {
     
     --color-primary: #008cff;
+    --color-primary-button: color-mix(in srgb,var(--color-primary),#000 30%);
     --color-primary-container: color-mix(in srgb,var(--color-primary),#fff 80%);
     --color-primary-text: color-mix(in srgb,var(--color-primary),#000 50%);
 
@@ -79,7 +80,7 @@ search-bar {
 
 /*Buttons*/
 .material-button {
-    background-color: var(--color-primary);
+    background-color: var(--color-primary-button);
     border-radius: var(--border-radius-input);
 
     display: flex;
