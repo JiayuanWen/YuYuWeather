@@ -68,6 +68,37 @@ export default function Settings() {
         document.documentElement.style.setProperty('--color-primary', color);
     },[]);
 
+    // Site theme
+    const [color_mode, setColorMode] = useState(cookies.get('mode') ? cookies.get('mode') : 'light');
+    const toLightMode = () => {
+        setColorMode('light');
+        
+    }
+    const toDarkMode = () => {
+        setColorMode('dark');
+    }
+    const setting_theme = (
+        <div className="settings-mode">
+            <div className="settings-subtitle">Color mode</div>
+            <div className="settings-mode-options">
+                <div 
+                    className={`settings-mode-light material-button${color_mode === "dark" ? "-outline" : ""}`}
+                    style={brightnessCatagory(color) === "bright" ? text_dark : text_light}
+                    onClick={toLightMode}
+                >
+                    <md-ripple></md-ripple>Light
+                </div>
+                <div 
+                    className={`settings-mode-dark material-button${color_mode === "dark" ? "" : "-outline"}`}
+                    style={brightnessCatagory(color) === "bright" ? text_dark : text_light}
+                    onClick={toDarkMode}
+                >
+                    <md-ripple></md-ripple>Dark
+                </div>
+            </div>
+        </div>
+    );
+
     // Site unit
     const [unit, setUnit] = useState(cookies.get('unit') ? cookies.get('unit') : 'Metric');
     const toImperial = () => {
@@ -117,6 +148,9 @@ export default function Settings() {
         // Store prefered unit as cookie
         cookies.set('unit',unit,{ path:'/'});
 
+        // Store color mode as cookie
+        cookies.set('mode',color_mode,{ path:'/'});
+
         // Set save_clicked state to true so save indicator shows
         setSaveClicked(true);
         await delay(100);
@@ -150,13 +184,17 @@ export default function Settings() {
     const resetSettings = async () => {
 
         // Color
-        // Remove color cookie and reset color to default
+        // Remove color cookie and reset color to default (light blue #008cff)
         cookies.remove('color'); setColor('#008cff');
         // Apply default color
         document.documentElement.style.setProperty('--color-primary','#008cff');
 
+        // Color mode
+        // Remove color cookie and reset mode to default (light)
+        cookies.remove('mode'); setColorMode('light');
+
         // Unit
-        // Remove unit cookie and reset unit to default
+        // Remove unit cookie and reset unit to default (Base on location)
         cookies.remove('unit'); setUnit('Metric');
 
         // Set reset_clicked state to true so reset indicator shows
@@ -218,6 +256,9 @@ export default function Settings() {
 
                 {/*Measure unit*/}
                 {setting_unit}
+
+                {/*Site theme*/}
+                {setting_theme}
 
                 {/*Site language*/}
                 {setting_language}

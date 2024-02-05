@@ -92,7 +92,6 @@
     .settings-menu {
         left: 1px; transform: translateX(0);
 
-        height: 700px;
         width: 92vw;
     }
 }
@@ -100,7 +99,7 @@
     .settings-menu {
         left: 1px; transform: translateX(0);
 
-        height: 550px;
+        height: 620px;
         width: 96vw;
 
         margin: 5px;
@@ -153,11 +152,31 @@
     }
 }
 
+/*Color mode switcher*/
+.settings-mode {
+    position: absolute;
+    left: 24px;
+    top: 190px;
+}
+.settings-mode-options {
+    display: flex;
+    justify-content: left;
+    
+}
+.settings-mode-dark, .settings-mode-light {
+    position: absolute;
+
+    width: 90px !important;
+}
+.settings-mode-dark {
+    left: 95px !important;
+}
+
 /*Unit switcher*/
 .settings-unit {
     position: absolute;
     left: 24px;
-    top: 190px;
+    top: 300px;
 }
 .settings-unit-options {
     display: flex;
@@ -169,7 +188,7 @@
 
     width: 90px !important;
 }
-.settings-unit-metric {
+.settings-unit-imperial {
     left: 95px !important;
 }
 
@@ -177,7 +196,7 @@
 .settings-language {
     position: absolute;
     left: 24px;
-    top: 300px;
+    top: 410px;
 }
 
 /*Save settings button*/
@@ -242,10 +261,10 @@
 /*Disclaimer*/
 .settings-disclaimer {
     position: absolute;
-    left: 25px;
+    left: 300px;
     bottom: 120px;
 
-    width: 550px;
+    width: 280px;
 
     font-size: small;
     
@@ -254,18 +273,19 @@
 @media only screen and (max-width: 627px) {
     .settings-disclaimer {
         position: absolute;
-        left: 25px;
+        right: 25px;
         bottom: 180px;
     
-        width: 300px;
+        width: 30vw;
     
         font-size: small;
         
     }
 }
-@media only screen and (max-width: 395px) {
+@media only screen and (max-width: 505px) {
     .settings-disclaimer {
         opacity: 0;
+        pointer-events: none;
     }
 }
 
