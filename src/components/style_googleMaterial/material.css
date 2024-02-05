@@ -1,13 +1,18 @@
 :root {
     
     --color-primary: #008cff;
+
     --color-primary-button: color-mix(in srgb,var(--color-primary),#000 30%);
+    --color-primary-button-dark: color-mix(in srgb,var(--color-primary),#fff 80%);
+
     --color-primary-container: color-mix(in srgb,var(--color-primary),#fff 80%);
+    --color-primary-container-dark: color-mix(in srgb,var(--color-primary),#000 50%);
+
     --color-primary-text: color-mix(in srgb,var(--color-primary),#000 50%);
+    --color-primary-text-light: color-mix(in srgb,var(--color-primary),#fff 90%);
 
     --color-error: #aa1616;
     --color-error-container: #ffd9d9;
-
     
     --border-radius-container: 16px;
     --border-radius-input: 99px;
@@ -42,7 +47,7 @@ search-bar {
         outline: none;
 
     }
-    @media only screen and (max-width: 477px) {
+    @media screen and (max-width: 477px) {
         search-bar {
             width: 200px;
         }
@@ -64,7 +69,7 @@ search-bar {
 
     transform: translateX(0);
 }
-@media only screen and (max-width: 477px) {
+@media screen and (max-width: 477px) {
     #search-icon {
         position: absolute;
         top: 13px;
@@ -78,7 +83,7 @@ search-bar {
         cursor: progress;
     }
 
-/*Buttons*/
+/*Standard Button*/
 .material-button {
     background-color: var(--color-primary-button);
     border-radius: var(--border-radius-input);
@@ -89,15 +94,14 @@ search-bar {
 
     font-size: 15px;
     text-align: center;
+    color: var(--color-primary-text-light) !important;
 
     height: 40px;
     width: 80px;
 }
-.material-button-outline {
+.material-button-dark {
     background-color: var(--color-primary-container);
     border-radius: var(--border-radius-input);
-
-    border: solid black 1px;
 
     display: flex;
     justify-content: center;
@@ -110,6 +114,75 @@ search-bar {
     height: 40px;
     width: 80px;
 }
-.material-button:hover, .material-button-outline:hover {
+.material-button:hover, .material-button-dark:hover {
     cursor: pointer;
+}
+
+/*Outlined Button*/
+.material-button-outline {
+    background-color: #00000000;
+    border-radius: var(--border-radius-input);
+
+    border: solid black 1px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 15px;
+    text-align: center;
+    /*color: var(--color-primary-text) !important;*/
+
+    height: 40px;
+    width: 80px;
+}
+.material-button-outline-dark {
+    background-color: #00000000;
+    border-radius: var(--border-radius-input);
+
+    border: solid var(--color-primary-container) 1px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 15px;
+    text-align: center;
+    /*color: var(--color-primary-text) !important;*/
+
+    height: 40px;
+    width: 80px;
+}
+.material-button-outline:hover, .material-button-outline-dark:hover {
+    cursor: pointer;
+}
+
+/*Container*/
+.material-container {
+    background-color: var(--color-primary-container);
+    border-radius: var(--border-radius-container);
+}
+.material-container-dark {
+    background-color: var(--color-primary-container-dark);
+    border-radius: var(--border-radius-container);
+}
+
+/*Dark mode icons*/
+.icon-dark {
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(303deg) brightness(103%) contrast(101%) !important;
+}
+
+/*Text*/
+.material-text-dark {
+    color: var(--color-primary-text);
+}
+.material-text-dark-pure {
+    color : black;
+}
+
+.material-text-light {
+    color: var(--color-primary-text-light);
+}
+.material-text-dark-pure {
+    color : black;
 }

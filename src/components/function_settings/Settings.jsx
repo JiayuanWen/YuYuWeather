@@ -5,12 +5,11 @@ import settingsIcon from './settings.svg';
 import settingsClose from './close.svg';
 
 import { HuePicker } from "react-color";
-import { brightnessCatagory } from "../misc_scripts/brightnessLevel";
 import { delay } from "../misc_scripts/delay";
-import { text_light, text_dark } from "../misc_scripts/textColor";
 import { cookies } from "../misc_scripts/cookieHandle";
 
 import './settings.css';
+
 
 const debug_output = false;
 
@@ -32,18 +31,6 @@ export default function Settings() {
         </button>
     );
 
-    // Close window
-    const setting_close = (
-        <>
-            <img 
-                className="settings-close" 
-                src={settingsClose}
-                alt="Close Settings window"
-                onClick={function(e) {settingsIconClick(e);}}
-            />
-        </>
-    );
-
     // Color theme
     const [color, setColor] = useState(cookies.get('color') ? cookies.get('color') : '#008cff');
     const setting_color = (
@@ -63,40 +50,55 @@ export default function Settings() {
                     />
         </div>
     );
-    // Apply color scheme from cookie at app launch
+    // Apply color from cookie (or default) at app launch
     useEffect(() => {
         document.documentElement.style.setProperty('--color-primary', color);
     },[]);
 
-    // Site theme
+    // Site Color mode
     const [color_mode, setColorMode] = useState(cookies.get('mode') ? cookies.get('mode') : 'light');
     const toLightMode = () => {
         setColorMode('light');
-        
+        document.documentElement.style.setProperty('--color-mode', color_mode);
     }
     const toDarkMode = () => {
         setColorMode('dark');
+        document.documentElement.style.setProperty('--color-mode', color_mode);
     }
     const setting_theme = (
         <div className="settings-mode">
             <div className="settings-subtitle">Color mode</div>
             <div className="settings-mode-options">
                 <div 
-                    className={`settings-mode-light material-button${color_mode === "dark" ? "-outline" : ""}`}
-                    style={brightnessCatagory(color) === "bright" ? text_dark : text_light}
+                    className={`settings-mode-light material-button${color_mode === "light" ? "" : "-outline"}${color_mode === "light" ? "" : "-dark"} `}
                     onClick={toLightMode}
                 >
                     <md-ripple></md-ripple>Light
                 </div>
                 <div 
-                    className={`settings-mode-dark material-button${color_mode === "dark" ? "" : "-outline"}`}
-                    style={brightnessCatagory(color) === "bright" ? text_dark : text_light}
+                    className={`settings-mode-dark material-button${color_mode === "light" ? "-outline" : ""}${color_mode === "light" ? "" : "-dark"}`}
                     onClick={toDarkMode}
                 >
                     <md-ripple></md-ripple>Dark
                 </div>
             </div>
         </div>
+    );
+    // Apply color mode from cookie (or default) at app launch
+    useEffect(() => {
+        document.documentElement.style.setProperty('--color-mode', color_mode);
+    },[]);
+
+    // Close window
+    const setting_close = (
+        <>
+            <img 
+                className={`settings-close ${color_mode === "light" ? "" : "icon-dark"}`}
+                src={settingsClose}
+                alt="Close Settings window"
+                onClick={function(e) {settingsIconClick(e);}}
+            />
+        </>
     );
 
     // Site unit
@@ -113,18 +115,16 @@ export default function Settings() {
             <div className="settings-subtitle">Displayed unit</div>
             <div className="settings-unit-options">
                 <div 
-                    className={`settings-unit-imperial material-button${unit === "Metric" ? "-outline" : ""}`}
-                    style={brightnessCatagory(color) === "bright" ? text_dark : text_light}
-                    onClick={toImperial}
-                >
-                    <md-ripple></md-ripple>Imperial
-                </div>
-                <div 
-                    className={`settings-unit-metric material-button${unit === "Metric" ? "" : "-outline"}`}
-                    style={brightnessCatagory(color) === "bright" ? text_dark : text_light}
+                    className={`settings-unit-metric material-button${unit === "Metric" ? "" : "-outline"}${color_mode === "light" ? "" : "-dark"}`}
                     onClick={toMetric}
                 >
                     <md-ripple></md-ripple>Metric
+                </div>
+                <div 
+                    className={`settings-unit-imperial material-button${unit === "Metric" ? "-outline" : ""}${color_mode === "light" ? "" : "-dark"}`}
+                    onClick={toImperial}
+                >
+                    <md-ripple></md-ripple>Imperial
                 </div>
             </div>
         </div>
@@ -168,11 +168,13 @@ export default function Settings() {
     const setting_save = (
         <>
         <div className="settings-save-indicator settings-indicator" style={save_clicked ? notice_show : notice_hide}><ion-icon name="alert-circle-outline"></ion-icon> Settings saved. </div>
-        <div className="settings-save material-button">
+        <div 
+            className={`settings-save material-button ${color_mode === "light" ? "" : "material-button-dark" }`}
+        
+        >
             <md-ripple></md-ripple>
             <span 
-                className="settings-save-text" 
-                style={brightnessCatagory(color) === "bright" ? text_dark : text_light}
+                className={`settings-save-text ${color_mode === "light" ? "" : "material-text-dark"}`}
                 onClick={saveSettings}
             >Save</span>
         </div>
@@ -204,12 +206,18 @@ export default function Settings() {
     }
     const setting_reset = (
         <>
-        <div className="settings-reset-indicator settings-indicator" style={reset_clicked ? notice_show : notice_hide}><ion-icon name="alert-circle-outline"></ion-icon> Settings reset. </div>
-        <div className="settings-reset material-button">
+        <div 
+            className="settings-reset-indicator settings-indicator" 
+            style={reset_clicked ? notice_show : notice_hide}
+        >
+            <ion-icon name="alert-circle-outline"></ion-icon> Settings reset. 
+        </div>
+        <div 
+            className={`settings-reset material-button ${color_mode === "light" ? "" : "material-button-dark" }`}
+        >
             <md-ripple></md-ripple>
             <span 
-                className="settings-reset-text"
-                style={brightnessCatagory(color) === "bright" ? text_dark : text_light}
+                className={`settings-reset-text ${color_mode === "light" ? "" : "material-text-dark"}`}
                 onClick={resetSettings}
             >Reset settings</span>
         </div>
@@ -218,7 +226,9 @@ export default function Settings() {
 
     // Settings disclaimer
     const setting_disclaimer = (
-        <div className="settings-disclaimer">
+        <div 
+            className={`settings-disclaimer`}
+        >
             <ion-icon name="alert-circle-outline"></ion-icon> This app uses cookies to remember settings. Whitelist this app from cookie deletion plugins to ensure settings get saved.
         </div>
     );
@@ -244,7 +254,9 @@ export default function Settings() {
             style={settings_visible ? settings_style_visible : settings_style_hide} 
             className="settings-overlay"
         >
-            <div className="settings-menu">
+            <div 
+                className={`settings-menu material-container${color_mode === "light" ? "":"-dark"} ${color_mode === "light" ? "material-text-dark" : "material-text-light"}`}
+            >
 
                 {/*Close window button*/}
                 {setting_close}

@@ -17,6 +17,7 @@ import { getCoord } from './getCoordintes';
 
 // Stylesheets
 import './weather.css';
+import { cookies } from '../misc_scripts/cookieHandle';
 
 const debug_output = false;
 
@@ -235,7 +236,9 @@ function WeatherInfo() {
     // Other weather readings
     const info_extra = (
         weather_data.main ?
-            <div className="weather-info-extra material-common">
+            <div 
+                className={`weather-info-extra material-container${cookies.get('mode') === "light" ? "":"-dark"}`}
+            >
                 { //Feels like
                     weather_data.main.feels_like ?
                         <div className="temperature-feel">
