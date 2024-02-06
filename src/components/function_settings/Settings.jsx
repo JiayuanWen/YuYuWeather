@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Cookies from "universal-cookie";
+import axios from "axios";
 
 import settingsIcon from './settings.svg';
 import settingsClose from './close.svg';
@@ -7,6 +7,7 @@ import settingsClose from './close.svg';
 import { HuePicker } from "react-color";
 import { delay } from "../misc_scripts/delay";
 import { cookies } from "../misc_scripts/cookieHandle";
+import { getCoord } from "../function_weather/getCoordintes";
 
 import './settings.css';
 
@@ -14,7 +15,7 @@ import './settings.css';
 const debug_output = false;
 
 export default function Settings({setColorMode, color_mode, setUnit, unit}) {
-    const [app_version, setAppVersion] = useState('020610.2024');
+    const [app_version, setAppVersion] = useState('020610.2024'); 
 
     // Settings icon
     const [settings_visible, setSettingsVisible] = useState(false);
@@ -112,8 +113,7 @@ export default function Settings({setColorMode, color_mode, setUnit, unit}) {
         </>
     );
 
-    // Site unit
-    //const [unit, setUnit] = useState(cookies.get('unit') ? cookies.get('unit') : 'Metric');
+    // Displayed unit
     const toMetric = () => {
         setUnit('metric');
     }
@@ -121,6 +121,44 @@ export default function Settings({setColorMode, color_mode, setUnit, unit}) {
         setUnit('imperial');
         
     }
+    // Set default unit base on user country
+    // API source: https://locationiq.com/
+    const currentLocation = (event) => {
+
+        getCoord().then((response) => {
+            debug_output ? (() => {console.log(`User location data:`);console.log(response);console.log("")})() : void(0);
+            var lat = response.coords.latitude;
+            var lon = response.coords.longitude;
+
+            // Get location data from api
+            axios.get("https://us1.locationiq.com/v1/reverse.php?key=pk.e3db4461beb1fe1f9b33ecaa7ff62569&lat=" + lat + "&lon=" + lon + "&format=json")
+            .then((response) => {
+                debug_output ? (() => {console.log(`Location API response:`);console.log(response.data);console.log("")})() : void(0);
+                
+                if (
+                    response.data.address.country_code === "us" ||
+                    response.data.address.country_code === "mm" ||
+                    response.data.address.country_code === "lr"
+                ) {
+                    if (!cookies.get('unit')) {
+                        console.log("Current country uses imperial units, site content adjusted set accordingly.")
+                        setUnit('imperial');
+                    }
+                    
+                }
+
+            })
+            .catch((error) => {
+                debug_output ? (() => {console.log(`Location API error: ${error.message}`);console.log("")})() : void(0);
+            },[])
+        })
+        .catch((error) => {
+            
+        })
+    }
+    useEffect(() => {
+        currentLocation();
+    },[]);
     const setting_unit = (
         <div className="settings-unit">
             <div className="settings-subtitle">Displayed unit</div>

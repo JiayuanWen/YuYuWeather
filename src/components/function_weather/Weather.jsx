@@ -1,5 +1,5 @@
 // Essentials
-import React, {createElement, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 
 // Components
@@ -14,11 +14,9 @@ import myLocationIcon from './my_location.svg'
 import { openweather_api } from './api';
 import { weatherIcon } from './weatherIcon';
 import { getCoord } from './getCoordintes';
-import { cookies } from '../misc_scripts/cookieHandle';
 
 // Stylesheets
 import './weather.css';
-
 
 const debug_output = false;
 
@@ -71,9 +69,6 @@ function WeatherInfo({color_mode, unit}) {
         .catch((error) => {
             setStatus(error.message);
         })
-
-        
-        
     }
     // For strange use of useEffect below, see https://www.w3schools.com/react/react_useeffect.asp
     //
