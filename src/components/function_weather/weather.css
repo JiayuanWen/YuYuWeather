@@ -46,8 +46,6 @@
     display: flex;
     justify-content: center;
 
-    background-color: var(--color-primary-container);
-
     border-radius: var(--border-radius-input);
 }
 @media  screen and (max-width: 865px) {

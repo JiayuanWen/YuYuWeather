@@ -1,6 +1,28 @@
 
 :root {
-  --color-mode: light;
+  --color-mode: light; color-scheme: only light; /*Light & Dark mode controlled by app logic, no need user agent involvement*/
+  --bg-color-accent: #fff; /*See ./components/style_background.background.css*/
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+  color: var(--random-var); /*For some reason passing a non-existing variable causes placeholder to take on default font color of rest of web...*/
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color: var(--random-var);
+  opacity: 0.5;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color: var(--random-var);
+  opacity: 0.5;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: var(--random-var);
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: var(--random-var);
+}
+::placeholder { /* Most modern browsers support this now. */
+  color: var(--random-var);
 }
 
 body {
@@ -15,6 +37,8 @@ body {
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  top: 0px !important;
 }
 
 code {
@@ -26,10 +50,6 @@ code {
 .skiptranslate > iframe{
   visibility: hidden !important;
   height: 1px !important;
-}
-
-body {
-  top: 0px !important;
 }
 
 /*Google translate button style*/

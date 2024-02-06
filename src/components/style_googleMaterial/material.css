@@ -2,13 +2,13 @@
     
     --color-primary: #008cff;
 
-    --color-primary-button: color-mix(in srgb,var(--color-primary),#000 30%);
+    --color-primary-button: color-mix(in srgb,var(--color-primary),#000 40%);
     --color-primary-button-dark: color-mix(in srgb,var(--color-primary),#fff 80%);
 
     --color-primary-container: color-mix(in srgb,var(--color-primary),#fff 80%);
     --color-primary-container-dark: color-mix(in srgb,var(--color-primary),#000 50%);
 
-    --color-primary-text: color-mix(in srgb,var(--color-primary),#000 50%);
+    --color-primary-text: color-mix(in srgb,var(--color-primary),#000 60%);
     --color-primary-text-light: color-mix(in srgb,var(--color-primary),#fff 90%);
 
     --color-error: #aa1616;
@@ -38,11 +38,12 @@ search-bar {
         padding-right: 50px;
 
         border: 0px;
-        border-radius: var(--border-radius-input);
+        border-radius: var(--border-radius-input) !important;
 
         background-color: var(--color-primary-container);
 
         font-size: 16px;
+        color: red;
 
         outline: none;
 
@@ -159,17 +160,21 @@ search-bar {
 
 /*Container*/
 .material-container {
-    background-color: var(--color-primary-container);
+    background-color: var(--color-primary-container) !important;
     border-radius: var(--border-radius-container);
 }
 .material-container-dark {
-    background-color: var(--color-primary-container-dark);
+    background-color: var(--color-primary-container-dark) !important;
     border-radius: var(--border-radius-container);
 }
 
 /*Dark mode icons*/
-.icon-dark {
+/*For changing svg color: https://codepen.io/sosuke/pen/Pjoqqp*/
+.icon-light {
     filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(303deg) brightness(103%) contrast(101%) !important;
+}
+.icon-dark {
+    filter: invert(0%) sepia(14%) saturate(7490%) hue-rotate(336deg) brightness(90%) contrast(95%) !important;
 }
 
 /*Text*/
@@ -183,6 +188,6 @@ search-bar {
 .material-text-light {
     color: var(--color-primary-text-light);
 }
-.material-text-dark-pure {
-    color : black;
+.material-text-light-pure {
+    color : rgb(255, 255, 255);
 }

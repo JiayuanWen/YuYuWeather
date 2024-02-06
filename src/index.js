@@ -1,13 +1,14 @@
 // React essential
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 
 // Stylesheets
 import './index.css';
 
-// Components
+// Modules
 // Material Web componenets (See: https://m3.material.io/develop/web)
 import MaterialYou from './components/style_googleMaterial/MaterialYou';
+import { cookies } from './components/misc_scripts/cookieHandle';
 
 // For debug use
 import reportWebVitals from './reportWebVitals';
@@ -20,6 +21,11 @@ import Settings from './components/function_settings/Settings';
 
 // Component rendering goes here
 function App() {
+  // Global states
+  const [color_mode, setColorMode] = useState(cookies.get('mode') ? cookies.get('mode') : 'light');
+  
+
+  // Render
   return (
     <>
 
@@ -30,8 +36,8 @@ function App() {
       <Background/>
 
       {/*Site contents*/}
-      <WeatherInfo/>
-      <Settings/>
+      <WeatherInfo color_mode={color_mode}/>
+      <Settings setColorMode={setColorMode} color_mode={color_mode}/>
 
     </>
   );

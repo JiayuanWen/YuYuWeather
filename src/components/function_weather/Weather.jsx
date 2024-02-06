@@ -21,7 +21,7 @@ import { cookies } from '../misc_scripts/cookieHandle';
 
 const debug_output = false;
 
-function WeatherInfo() {
+function WeatherInfo({color_mode}) {
     const [weather_data, setWeatherData] = useState({});
     const [app_init, setAppInit] = useState('1');
     const [app_status, setStatus] = useState('Initial');
@@ -150,8 +150,11 @@ function WeatherInfo() {
     const search_bar = (
         <div className="location-search">
             <md-ripple></md-ripple>
-            <search-bar class="location-search-bar">
+            <search-bar 
+                class={`location-search-bar material-container${color_mode === "light" ? "" : "-dark"}`}
+            >
                 <input 
+                    className={`material-container${color_mode === "light" ? "" : "-dark"} material-text${color_mode === "light" ? "-dark-pure" : "-light-pure"}`}
                     id="location-search-input" 
                     type="text" 
                     placeholder="Enter location name..." 
@@ -170,7 +173,12 @@ function WeatherInfo() {
                         }
                     }} 
                 />
-                <img src={searchIcon} onClick={function(e) {getWeatherData();}} id="search-icon" class="material-icons"></img>
+                <img 
+                    src={searchIcon} 
+                    onClick={function(e) {getWeatherData();}} 
+                    id="search-icon" 
+                    class={`material-icons ${color_mode === "light" ? "icon-dark" : "icon-light"}`}>
+                </img>
                 
             </search-bar>
         </div>
@@ -178,7 +186,9 @@ function WeatherInfo() {
     
     // User current location button
     const user_location = (
-        <div className='location-current'>
+        <div 
+            className={`location-current material-container${color_mode === "light" ? "":"-dark"}`}
+        >
             <md-ripple></md-ripple>
             <img 
                 src={myLocationIcon} 
@@ -187,7 +197,7 @@ function WeatherInfo() {
                     currentLocation();
                     setAppInit('2');
                 }}
-                className='location-current-icon'
+                className={`location-current-icon ${color_mode === "light" ? "":"icon-light"}`}
             ></img>
         </div>
         
@@ -195,7 +205,9 @@ function WeatherInfo() {
 
     // City/Town name
     const city_name = (
-        <div className="city-name">
+        <div 
+            className={`city-name material-text${color_mode === "light"?"-dark-pure":"-light"}`}
+        >
             {weather_data.main ? <p>{weather_data.name}</p> : <p></p>}
             
         </div>
@@ -204,11 +216,12 @@ function WeatherInfo() {
     // Temperature reading
     const temperature = (
         weather_data.main ? 
-            <div className="temperature">
+            <div 
+                className={`temperature material-text${color_mode === "light"?"-dark-pure":"-light"}`}
+            >
                 <h1 className="temperature-read">
                     <span className="temperature-read-value">{Math.round(weather_data.main.temp)}</span><span className="temperature-unit"> °F</span>
                 </h1>
-                
             </div>
         :
             <div className="temperature">
@@ -223,7 +236,9 @@ function WeatherInfo() {
     }
     const weather_icon = (
         weather_data.weather ?
-            <div className="weather-desc">
+            <div 
+                className={`weather-desc material-text${color_mode === "light"?"-dark-pure":"-light"}`}
+            >
                 {/*Weather description is stored in an element of the array[size 1] named `weather`, so we have `[0]`*/}
                 <span>{weatherIcon(weather_data.weather[0].main)}</span>
             </div>
@@ -237,7 +252,7 @@ function WeatherInfo() {
     const info_extra = (
         weather_data.main ?
             <div 
-                className={`weather-info-extra material-container${cookies.get('mode') === "light" ? "":"-dark"}`}
+                className={`weather-info-extra material-container${color_mode === "light" ? "":"-dark"} material-text${color_mode === "light" ? "-dark-pure" : "-light-pure"}`}
             >
                 { //Feels like
                     weather_data.main.feels_like ?

@@ -13,8 +13,8 @@ import './settings.css';
 
 const debug_output = false;
 
-export default function Settings() {
-    const [app_version, setAppVersion] = useState('020510.2024');
+export default function Settings({setColorMode, color_mode}) {
+    const [app_version, setAppVersion] = useState('020610.2024');
 
     // Settings icon
     const [settings_visible, setSettingsVisible] = useState(false);
@@ -26,7 +26,10 @@ export default function Settings() {
 
     }
     const setting_icon = (
-        <button className="settings-icon" onClick={function(e) {settingsIconClick(e);}}>
+        <button 
+            className={`settings-icon icon${color_mode === "light" ? "-dark" : "-light"}`}
+            onClick={function(e) {settingsIconClick(e);}}
+        >
             <img src={settingsIcon} alt="settings-icon"></img>
         </button>
     );
@@ -56,14 +59,16 @@ export default function Settings() {
     },[]);
 
     // Site Color mode
-    const [color_mode, setColorMode] = useState(cookies.get('mode') ? cookies.get('mode') : 'light');
+    //const [color_mode, setColorMode] = useState(cookies.get('mode') ? cookies.get('mode') : 'light');
     const toLightMode = () => {
         setColorMode('light');
         document.documentElement.style.setProperty('--color-mode', color_mode);
+        document.documentElement.style.setProperty('--bg-color-accent', '#fff');
     }
     const toDarkMode = () => {
         setColorMode('dark');
         document.documentElement.style.setProperty('--color-mode', color_mode);
+        document.documentElement.style.setProperty('--bg-color-accent', '#000');
     }
     const setting_theme = (
         <div className="settings-mode">
@@ -87,13 +92,19 @@ export default function Settings() {
     // Apply color mode from cookie (or default) at app launch
     useEffect(() => {
         document.documentElement.style.setProperty('--color-mode', color_mode);
+
+        color_mode === "light" ? 
+            document.documentElement.style.setProperty('--bg-color-accent', '#fff')
+        :
+            document.documentElement.style.setProperty('--bg-color-accent', '#000')
+ 
     },[]);
 
     // Close window
     const setting_close = (
         <>
             <img 
-                className={`settings-close ${color_mode === "light" ? "" : "icon-dark"}`}
+                className={`settings-close ${color_mode === "light" ? "icon-dark" : "icon-light"}`}
                 src={settingsClose}
                 alt="Close Settings window"
                 onClick={function(e) {settingsIconClick(e);}}
@@ -252,7 +263,7 @@ export default function Settings() {
     const settings = (
         <div 
             style={settings_visible ? settings_style_visible : settings_style_hide} 
-            className="settings-overlay"
+            className={`settings-overlay${color_mode === "light" ? "" : "-dark"}`}
         >
             <div 
                 className={`settings-menu material-container${color_mode === "light" ? "":"-dark"} ${color_mode === "light" ? "material-text-dark" : "material-text-light"}`}
