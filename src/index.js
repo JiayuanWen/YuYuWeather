@@ -22,6 +22,7 @@ import Settings from './components/function_settings/Settings';
 // Component rendering goes here
 function App() {
   // Global states
+  // See https://dev.to/andydziabo/how-to-pass-data-between-sibling-components-in-react-2cjg
   const [color_mode, setColorMode] = useState(cookies.get('mode') ? cookies.get('mode') : 'light');
   const [unit, setUnit] = useState(cookies.get('unit') ? cookies.get('unit') : 'imperial');
 
