@@ -23,7 +23,7 @@ import Settings from './components/function_settings/Settings';
 function App() {
   // Global states
   const [color_mode, setColorMode] = useState(cookies.get('mode') ? cookies.get('mode') : 'light');
-  
+  const [unit, setUnit] = useState(cookies.get('unit') ? cookies.get('unit') : 'imperial');
 
   // Render
   return (
@@ -36,8 +36,8 @@ function App() {
       <Background/>
 
       {/*Site contents*/}
-      <WeatherInfo color_mode={color_mode}/>
-      <Settings setColorMode={setColorMode} color_mode={color_mode}/>
+      <WeatherInfo color_mode={color_mode} unit={unit}/>
+      <Settings setColorMode={setColorMode} color_mode={color_mode} setUnit={setUnit} unit={unit}/>
 
     </>
   );

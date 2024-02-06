@@ -21,12 +21,12 @@ import { cookies } from '../misc_scripts/cookieHandle';
 
 const debug_output = false;
 
-function WeatherInfo({color_mode}) {
+function WeatherInfo({color_mode, unit}) {
     const [weather_data, setWeatherData] = useState({});
     const [app_init, setAppInit] = useState('1');
     const [app_status, setStatus] = useState('Initial');
     const [location, setLocation] = useState('');
-    const [unit, setUnit] = useState('imperial');
+    
 
     // Weather info source
     // API source: https://openweathermap.org/
@@ -183,6 +183,10 @@ function WeatherInfo({color_mode}) {
             </search-bar>
         </div>
     );
+    // Refresh weather data when switching between Metric and Imperial unit.
+    useEffect(() => {
+        getWeatherData();
+    },[unit]);
     
     // User current location button
     const user_location = (
@@ -220,13 +224,12 @@ function WeatherInfo({color_mode}) {
                 className={`temperature material-text${color_mode === "light"?"-dark-pure":"-light"}`}
             >
                 <h1 className="temperature-read">
-                    <span className="temperature-read-value">{Math.round(weather_data.main.temp)}</span><span className="temperature-unit"> °F</span>
+                    <span className="temperature-read-value">{Math.round(weather_data.main.temp)}</span> <span className="temperature-unit">{unit === "metric" ? <>°C</> : <>°F</>}</span>
                 </h1>
             </div>
         :
             <div className="temperature">
                 <h1 className="temperature-read">
-                    {/*<span className="temperature-read-value"></span><span className="temperature-unit"> °F</span>*/}
                 </h1>
             </div>
     );
@@ -257,7 +260,7 @@ function WeatherInfo({color_mode}) {
                 { //Feels like
                     weather_data.main.feels_like ?
                         <div className="temperature-feel">
-                            <span className="weather-info-extra-value">{Math.round(weather_data.main.feels_like)} <span className="temperature-unit"> °F</span></span>
+                            <span className="weather-info-extra-value">{Math.round(weather_data.main.feels_like)} <span className="temperature-unit">{unit === "metric" ? <>°C</> : <>°F</>}</span></span>
                             <div>Feels like </div>
                         </div>
                     :
@@ -267,7 +270,7 @@ function WeatherInfo({color_mode}) {
                     weather_data.wind.speed ?
                         <div className="wind">
                             
-                            <span className="weather-info-extra-value">{weather_data.wind.speed}  <span className="wind-unit"> m/s</span></span>
+                            <span className="weather-info-extra-value">{weather_data.wind.speed}  <span className="wind-unit">{unit === "metric" ? <>m/s</> : <>mph</>}</span></span>
                             <div>Wind</div>
                         </div>
                     :

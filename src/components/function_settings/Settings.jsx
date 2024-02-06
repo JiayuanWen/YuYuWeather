@@ -13,7 +13,7 @@ import './settings.css';
 
 const debug_output = false;
 
-export default function Settings({setColorMode, color_mode}) {
+export default function Settings({setColorMode, color_mode, setUnit, unit}) {
     const [app_version, setAppVersion] = useState('020610.2024');
 
     // Settings icon
@@ -113,26 +113,26 @@ export default function Settings({setColorMode, color_mode}) {
     );
 
     // Site unit
-    const [unit, setUnit] = useState(cookies.get('unit') ? cookies.get('unit') : 'Metric');
-    const toImperial = () => {
-        setUnit('Imperial');
-        
-    }
+    //const [unit, setUnit] = useState(cookies.get('unit') ? cookies.get('unit') : 'Metric');
     const toMetric = () => {
-        setUnit('Metric');
+        setUnit('metric');
+    }
+    const toImperial = () => {
+        setUnit('imperial');
+        
     }
     const setting_unit = (
         <div className="settings-unit">
             <div className="settings-subtitle">Displayed unit</div>
             <div className="settings-unit-options">
                 <div 
-                    className={`settings-unit-metric material-button${unit === "Metric" ? "" : "-outline"}${color_mode === "light" ? "" : "-dark"}`}
+                    className={`settings-unit-metric material-button${unit === "metric" ? "" : "-outline"}${color_mode === "light" ? "" : "-dark"}`}
                     onClick={toMetric}
                 >
                     <md-ripple></md-ripple>Metric
                 </div>
                 <div 
-                    className={`settings-unit-imperial material-button${unit === "Metric" ? "-outline" : ""}${color_mode === "light" ? "" : "-dark"}`}
+                    className={`settings-unit-imperial material-button${unit === "metric" ? "-outline" : ""}${color_mode === "light" ? "" : "-dark"}`}
                     onClick={toImperial}
                 >
                     <md-ripple></md-ripple>Imperial
