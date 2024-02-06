@@ -1,10 +1,12 @@
 import React from "react";
 import './invalidQuery.css';
 
-function InvalidQueryPrompt({status}) { // Component with parameters. See https://react.dev/learn/conditional-rendering
+function InvalidQueryPrompt({status, color_mode}) { // Component with parameters. See https://react.dev/learn/conditional-rendering
     if (status === 404) {
         return (
-            <div className="invalid-query-prompt">
+            <div 
+                className={`invalid-query-prompt material-container${color_mode === "light" ? "":"-dark"} material-text${color_mode === "light" ? "-dark-pure":"-light"}`}
+            >
                 <span class="material-icons-round invalid-query-prompt-icon">landscape</span>
                 <div className="invalid-query-prompt-text">Cannot find desired location<br/></div>
             </div>

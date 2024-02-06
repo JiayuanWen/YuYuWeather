@@ -14,10 +14,11 @@ import myLocationIcon from './my_location.svg'
 import { openweather_api } from './api';
 import { weatherIcon } from './weatherIcon';
 import { getCoord } from './getCoordintes';
+import { cookies } from '../misc_scripts/cookieHandle';
 
 // Stylesheets
 import './weather.css';
-import { cookies } from '../misc_scripts/cookieHandle';
+
 
 const debug_output = false;
 
@@ -132,7 +133,7 @@ function WeatherInfo({color_mode, unit}) {
             // In case OpenWeather respond with error
             .catch((error) => {
                 debug_output ? (() => {console.log(`OpenWeather error: ${error.message}`);console.log("")})() : void(0);
-
+                /*
                 if (error.response) {
                     console.log(error.response.status);
                     setStatus(error.response.status);
@@ -142,7 +143,9 @@ function WeatherInfo({color_mode, unit}) {
                 }
                 else {
                     setStatus(error.message);
-                }   
+                }  
+                */ 
+                setStatus(error.message);
                 setWeatherData({});
                 
             })
@@ -307,8 +310,8 @@ function WeatherInfo({color_mode, unit}) {
         
         {search_bar} {user_location}
 
-        <NoConnectionPrompt status={app_status}/>
-        <InvalidQueryPrompt status={app_status}/>
+        <NoConnectionPrompt status={app_status} color_mode={color_mode}/>
+        <InvalidQueryPrompt status={app_status} color_mode={color_mode}/>
 
 
         <div className="weather-info material-common" style={{zIndex:2}}>

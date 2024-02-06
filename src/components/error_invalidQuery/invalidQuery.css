@@ -3,8 +3,6 @@
     left: 50vw; transform: translateX(-50%);
     top: 35vh;
 
-    background-color: var(--color-primary-container);
-
     border-radius: var(--border-radius-container);
 
     width: 500px;
