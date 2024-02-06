@@ -205,10 +205,12 @@ export default function Settings({setColorMode, color_mode, setUnit, unit}) {
         // Color mode
         // Remove color cookie and reset mode to default (light)
         cookies.remove('mode'); setColorMode('light');
+        // Apply default color mode
+        document.documentElement.style.setProperty('--bg-color-accent', '#fff')
 
         // Unit
         // Remove unit cookie and reset unit to default (Base on location)
-        cookies.remove('unit'); setUnit('Metric');
+        cookies.remove('unit'); setUnit('metric');
 
         // Set reset_clicked state to true so reset indicator shows
         setResetClicked(true);
