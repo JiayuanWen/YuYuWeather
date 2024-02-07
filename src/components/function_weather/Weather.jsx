@@ -185,6 +185,17 @@ function WeatherInfo({color_mode, unit}) {
     useEffect(() => {
         getWeatherData();
     },[unit]);
+    // Refresh weather data every 30 minutes
+    /*
+    useEffect(() => {
+        const intervalRefresh = setInterval(() => {
+            getWeatherData();
+            console.log("App: Weather information updated.");
+        }, 1800000);
+
+        return () => clearInterval(intervalRefresh);
+    },[])
+    */
     
     // User current location button
     const user_location = (

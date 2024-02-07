@@ -14,8 +14,8 @@ import './settings.css';
 
 const debug_output = false;
 
-export default function Settings({setColorMode, color_mode, setUnit, unit}) {
-    const [app_version, setAppVersion] = useState('020610.2024'); 
+export default function Settings({setColorMode, color_mode, setUnit, unit, app_version}) {
+    
 
     // Settings icon
     const [settings_visible, setSettingsVisible] = useState(false);
@@ -31,7 +31,7 @@ export default function Settings({setColorMode, color_mode, setUnit, unit}) {
             className={`settings-icon icon${color_mode === "light" ? "-dark" : "-light"}`}
             onClick={function(e) {settingsIconClick(e);}}
         >
-            <img src={settingsIcon} alt="settings-icon"></img>
+            <img src={settingsIcon} alt="Settings icon"></img>
         </button>
     );
 
@@ -141,7 +141,7 @@ export default function Settings({setColorMode, color_mode, setUnit, unit}) {
                     response.data.address.country_code === "lr"
                 ) {
                     if (!cookies.get('unit')) {
-                        console.log("Current country uses imperial units, site content adjusted set accordingly.")
+                        console.log("App: Current country uses imperial units, site content adjusted set accordingly.")
                         setUnit('imperial');
                     }
                     

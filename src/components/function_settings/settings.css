@@ -151,6 +151,9 @@
 
     font-size: 35px;
 }
+.settings-subtitle{
+    margin-bottom: 15px;
+}
 
 /*Color picker*/
 .settings-color {
@@ -158,9 +161,7 @@
     left: 24px;
     top: 100px;
 }
-.settings-subtitle{
-    margin-bottom: 15px;
-}
+
 .hue-horizontal {
     border-radius: var(--border-radius-input) !important;
 }

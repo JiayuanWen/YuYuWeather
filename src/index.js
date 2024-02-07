@@ -18,6 +18,7 @@ import reportWebVitals from './reportWebVitals';
 import Background from './components/style_background/Background';
 import WeatherInfo from './components/function_weather/Weather';
 import Settings from './components/function_settings/Settings';
+import AppInfo from './components/function_appInfo/AppInfo';
 
 // Component rendering goes here
 function App() {
@@ -25,6 +26,7 @@ function App() {
   // See https://dev.to/andydziabo/how-to-pass-data-between-sibling-components-in-react-2cjg
   const [color_mode, setColorMode] = useState(cookies.get('mode') ? cookies.get('mode') : 'light');
   const [unit, setUnit] = useState(cookies.get('unit') ? cookies.get('unit') : 'imperial');
+  const [app_version, setAppVersion] = useState('020710.2024'); 
 
   // Render
   return (
@@ -38,7 +40,8 @@ function App() {
 
       {/*Site contents*/}
       <WeatherInfo color_mode={color_mode} unit={unit}/>
-      <Settings setColorMode={setColorMode} color_mode={color_mode} setUnit={setUnit} unit={unit}/>
+      <Settings setColorMode={setColorMode} color_mode={color_mode} setUnit={setUnit} unit={unit} app_version={app_version}/>
+      <AppInfo color_mode={color_mode} app_version={app_version}/>
 
     </>
   );
