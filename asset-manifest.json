@@ -1,20 +1,22 @@
 {
   "files": {
-    "main.css": "/YuYuWeather/static/css/main.5459957c.css",
-    "main.js": "/YuYuWeather/static/js/main.7e8ccee0.js",
+    "main.css": "/YuYuWeather/static/css/main.db787ca9.css",
+    "main.js": "/YuYuWeather/static/js/main.878be02c.js",
     "static/js/787.4bf51ab3.chunk.js": "/YuYuWeather/static/js/787.4bf51ab3.chunk.js",
     "index.html": "/YuYuWeather/index.html",
     "static/media/wifi_off.svg": "/YuYuWeather/static/media/wifi_off.e8b74683f59b69b5ff313b37e98a85bc.svg",
     "static/media/settings.svg": "/YuYuWeather/static/media/settings.2552a92fd3ea1b91afb4a690d0708b9b.svg",
+    "static/media/logo-github.svg": "/YuYuWeather/static/media/logo-github.f0843d48b095543a71d4e4f6809ca9d6.svg",
     "static/media/search_icon.svg": "/YuYuWeather/static/media/search_icon.a66155d340e4b39741d9323b20d56b09.svg",
     "static/media/my_location.svg": "/YuYuWeather/static/media/my_location.d1c814b10fcbbc16d30f122e46935f7c.svg",
+    "static/media/info.svg": "/YuYuWeather/static/media/info.60d430956951a2febfe10eacbcc038a4.svg",
     "static/media/close.svg": "/YuYuWeather/static/media/close.dd26bac30e254e0193115120fb087de2.svg",
-    "main.5459957c.css.map": "/YuYuWeather/static/css/main.5459957c.css.map",
-    "main.7e8ccee0.js.map": "/YuYuWeather/static/js/main.7e8ccee0.js.map",
+    "main.db787ca9.css.map": "/YuYuWeather/static/css/main.db787ca9.css.map",
+    "main.878be02c.js.map": "/YuYuWeather/static/js/main.878be02c.js.map",
     "787.4bf51ab3.chunk.js.map": "/YuYuWeather/static/js/787.4bf51ab3.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5459957c.css",
-    "static/js/main.7e8ccee0.js"
+    "static/css/main.db787ca9.css",
+    "static/js/main.878be02c.js"
   ]
 }
