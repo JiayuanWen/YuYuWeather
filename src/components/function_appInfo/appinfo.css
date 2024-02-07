@@ -181,6 +181,20 @@
     top: 24px;
 
     font-size: 45px;
+
+    pointer-events: none;
+}
+@media screen and (max-width: 477px) {
+    .app-info-title {
+        position: absolute;
+        left: 24px;
+        top: 24px;
+    
+        font-size: 45px;
+
+        width: 150px;
+
+    }
 }
 .app-info-title-divider {
     position: absolute;
@@ -192,13 +206,24 @@
     font-size: larger;
 }
 
-/*App version display*/
+/*App version*/
 .app-info-version {
     position: absolute;
     left: 25px;
     top: 90px;
     
     opacity: 0.5;
+}
+@media screen and (max-width: 477px) {
+    .app-info-version {
+        position: absolute;
+        top: unset;
+        left: unset;
+        right: 25px;
+        bottom: 10px;
+        
+        opacity: 0.5;
+    }
 }
 
 /*Developer info*/
