@@ -76,13 +76,13 @@ export default function Settings({setColorMode, color_mode, setUnit, unit, app_v
             <div className="settings-subtitle">Color mode</div>
             <div className="settings-mode-options">
                 <div 
-                    className={`settings-mode-light material-button${color_mode === "light" ? "" : "-outline"}${color_mode === "light" ? "" : "-dark"} `}
+                    className={`notranslate settings-mode-light material-button${color_mode === "light" ? "" : "-outline"}${color_mode === "light" ? "" : "-dark"} `}
                     onClick={toLightMode}
                 >
                     <md-ripple></md-ripple>Light
                 </div>
                 <div 
-                    className={`settings-mode-dark material-button${color_mode === "light" ? "-outline" : ""}${color_mode === "light" ? "" : "-dark"}`}
+                    className={`notranslate settings-mode-dark material-button${color_mode === "light" ? "-outline" : ""}${color_mode === "light" ? "" : "-dark"}`}
                     onClick={toDarkMode}
                 >
                     <md-ripple></md-ripple>Dark
@@ -164,13 +164,13 @@ export default function Settings({setColorMode, color_mode, setUnit, unit, app_v
             <div className="settings-subtitle">Displayed unit</div>
             <div className="settings-unit-options">
                 <div 
-                    className={`settings-unit-metric material-button${unit === "metric" ? "" : "-outline"}${color_mode === "light" ? "" : "-dark"}`}
+                    className={`notranslate settings-unit-metric material-button${unit === "metric" ? "" : "-outline"}${color_mode === "light" ? "" : "-dark"}`}
                     onClick={toMetric}
                 >
                     <md-ripple></md-ripple>Metric
                 </div>
                 <div 
-                    className={`settings-unit-imperial material-button${unit === "metric" ? "-outline" : ""}${color_mode === "light" ? "" : "-dark"}`}
+                    className={`notranslate settings-unit-imperial material-button${unit === "metric" ? "-outline" : ""}${color_mode === "light" ? "" : "-dark"}`}
                     onClick={toImperial}
                 >
                     <md-ripple></md-ripple>Imperial
@@ -223,7 +223,7 @@ export default function Settings({setColorMode, color_mode, setUnit, unit, app_v
         >
             <md-ripple></md-ripple>
             <span 
-                className={`settings-save-text ${color_mode === "light" ? "" : "material-text-dark"}`}
+                className={`notranslate settings-save-text ${color_mode === "light" ? "" : "material-text-dark"}`}
                 onClick={saveSettings}
             >Save</span>
         </div>

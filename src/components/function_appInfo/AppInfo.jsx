@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import appInfoIcon from './info.svg';
 import appInfoClose from '../function_settings/close.svg'
 import githubLogo from './logo-github.svg'
+import openNewTabIcon from './open-new-tab.svg'
 
 import './appinfo.css';
 
@@ -56,7 +57,7 @@ export default function AppInfo({color_mode, app_version}) {
         >
                     <div className="app-info-subtitle">Developed by</div>
                     <a 
-                        className={`material-text${color_mode === "light" ? "-dark" : "-light"}`} 
+                        className={`notranslate material-text${color_mode === "light" ? "-dark" : "-light"}`} 
                         href="https://github.com/JiayuanWen"
                         target="_blank"
                         rel="noopener noreferrer"
@@ -74,7 +75,7 @@ export default function AppInfo({color_mode, app_version}) {
         >
                     <div className="app-info-subtitle">Powered by</div>
                     <a 
-                        className={`material-text${color_mode === "light" ? "-dark" : "-light"}`} 
+                        className={`notranslate material-text${color_mode === "light" ? "-dark" : "-light"}`} 
                         href="https://openweathermap.org/"
                         target="_blank"
                         rel="noopener noreferrer"
@@ -92,7 +93,7 @@ export default function AppInfo({color_mode, app_version}) {
         >
                     <div className="app-info-subtitle">Visual design</div>
                     <a 
-                        className={`material-text${color_mode === "light" ? "-dark" : "-light"}`} 
+                        className={`notranslate material-text${color_mode === "light" ? "-dark" : "-light"}`} 
                         href="https://m3.material.io/"
                         target="_blank"
                         rel="noopener noreferrer"
@@ -125,6 +126,27 @@ export default function AppInfo({color_mode, app_version}) {
         </div>
     );
 
+    // Full credit
+    const app_info_credit = (
+        <div 
+            className={`app-info-credit`}
+        >
+            <a 
+                className={`material-text${color_mode === "light" ? "-dark" : "-light"}`} 
+                href="https://github.com/JiayuanWen/YuYuWeather?tab=readme-ov-file#credits"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Full credit <img 
+                                src={openNewTabIcon} 
+                                className={`icon${color_mode === "light" ? "-dark" : "-light"}`}
+                                alt="Github logo">
+                            </img>
+            </a> 
+                    
+        </div>
+    );
+
 
     // App info window
     const app_info_style_visible = {
@@ -147,7 +169,7 @@ export default function AppInfo({color_mode, app_version}) {
                 {/*Close window button*/}
                 {app_info_close}
 
-                <div className="app-info-title">YuYu Weather</div>
+                <div className="app-info-title notranslate">YuYu Weather</div>
                 <md-divider 
                     class={`app-info-title-divider material-text${color_mode === "light" ? "-dark":"-light"}`}
                     inset
@@ -162,8 +184,8 @@ export default function AppInfo({color_mode, app_version}) {
                 {app_info_powerby}
                 {/*Visual design*/}
                 {app_info_visual}
-                {/*Source code*/}
-                {app_info_source}
+                {/*Source code*/} {/*Full credit*/}
+                {app_info_source} {app_info_credit}
 
             </div>
         </div>

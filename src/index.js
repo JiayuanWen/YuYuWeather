@@ -26,7 +26,7 @@ function App() {
   // See https://dev.to/andydziabo/how-to-pass-data-between-sibling-components-in-react-2cjg
   const [color_mode, setColorMode] = useState(cookies.get('mode') ? cookies.get('mode') : 'light');
   const [unit, setUnit] = useState(cookies.get('unit') ? cookies.get('unit') : 'imperial');
-  const [app_version, setAppVersion] = useState('020710.2024'); 
+  const [app_version, setAppVersion] = useState('020715.2024'); 
 
   // Render
   return (

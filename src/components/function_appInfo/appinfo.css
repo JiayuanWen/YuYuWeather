@@ -264,4 +264,26 @@
     opacity: 1;
 }
 
+/*Developer info*/
+.app-info-credit {
+    position: absolute;
+    right: 25px;
+    bottom: 25px;
+
+}
+@media screen and (max-width: 477px) {
+    .app-info-credit {
+        position: absolute;
+        right: 25px;
+        bottom: 35px;
+    
+    }
+}
+.app-info-credit > a {
+    font-size: 16px;
+}
+.app-info-credit > a > img {
+    width: 18px;
+}
+
 
