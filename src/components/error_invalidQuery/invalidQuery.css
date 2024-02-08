@@ -37,4 +37,6 @@
 }
 .invalid-query-prompt-icon {
     font-size: 50px !important;
+
+    width: 50px;
 }

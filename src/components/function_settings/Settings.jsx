@@ -65,11 +65,13 @@ export default function Settings({setColorMode, color_mode, setUnit, unit, app_v
         setColorMode('light');
         document.documentElement.style.setProperty('--color-mode', color_mode);
         document.documentElement.style.setProperty('--bg-color-accent', '#fff');
+        document.documentElement.style.setProperty('--bg-color-intensity', '98%');
     }
     const toDarkMode = () => {
         setColorMode('dark');
         document.documentElement.style.setProperty('--color-mode', color_mode);
         document.documentElement.style.setProperty('--bg-color-accent', '#000');
+        document.documentElement.style.setProperty('--bg-color-intensity', '87%');
     }
     const setting_theme = (
         <div className="settings-mode">
@@ -98,6 +100,13 @@ export default function Settings({setColorMode, color_mode, setUnit, unit, app_v
             document.documentElement.style.setProperty('--bg-color-accent', '#fff')
         :
             document.documentElement.style.setProperty('--bg-color-accent', '#000')
+            
+        color_mode === "light" ? 
+            document.documentElement.style.setProperty('--bg-color-intensity', '98%')
+        :
+            document.documentElement.style.setProperty('--bg-color-intensity', '87%')
+        
+            
  
     },[]);
 

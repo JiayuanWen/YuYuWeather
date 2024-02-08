@@ -106,6 +106,7 @@ export default function AppInfo({color_mode, app_version}) {
 
     // Source code
     const app_info_source = (
+        /*
         <div 
             className={`app-info-source`}
         >
@@ -124,6 +125,24 @@ export default function AppInfo({color_mode, app_version}) {
                     </a> 
                     
         </div>
+        */
+        <div 
+        className={`app-info-source`}
+    >
+        <a 
+            className={`material-text${color_mode === "light" ? "-dark" : "-light"}`} 
+            href="https://github.com/JiayuanWen/YuYuWeather"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            Source code <img 
+                            src={openNewTabIcon} 
+                            className={`icon${color_mode === "light" ? "-dark" : "-light"}`}
+                            alt="Github logo">
+                        </img>
+        </a> 
+                
+    </div>
     );
 
     // Full credit

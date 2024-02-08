@@ -114,7 +114,7 @@
     z-index: 4;
 
     height: 660px;
-    width: 600px;
+    width: 500px;
 
     margin: 15px;
 }
@@ -250,21 +250,26 @@
 /*Source code*/
 .app-info-source {
     position: absolute;
-    left: 24px;
-    top: 480px;
+    right: 25px;
+    bottom: 55px;
 }
+@media screen and (max-width: 477px) {
+    .app-info-source {
+        position: absolute;
+        right: 25px;
+        bottom: 56px;
+    
+    }
+}
+.a
 .app-info-source > a {
-    opacity: 0.4;
+    font-size: 16px;
 }
 .app-info-source > a > img{
-    width: 40px;
-}
-.app-info-source > a:hover > img{
-    width: 40px;
-    opacity: 1;
+    width: 18px;
 }
 
-/*Developer info*/
+/*Full credit*/
 .app-info-credit {
     position: absolute;
     right: 25px;

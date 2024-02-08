@@ -1,5 +1,5 @@
 // Essentials
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import axios from 'axios';
 
 // Components
@@ -8,28 +8,33 @@ import InvalidQueryPrompt from '../error_invalidQuery/InvalidQuery';
 
 // Images
 import searchIcon from './search_icon.svg';
+import refreshIcon from './refresh.svg'
 import myLocationIcon from './my_location.svg'
 
 // Functions
 import { openweather_api } from './api';
 import { weatherIcon } from './weatherIcon';
 import { getCoord } from './getCoordintes';
+//import { delay } from '../misc_scripts/delay';
 
 // Stylesheets
 import './weather.css';
+
 
 const debug_output = false;
 
 function WeatherInfo({color_mode, unit}) {
     const [weather_data, setWeatherData] = useState({});
-    const [app_init, setAppInit] = useState('1');
+    const [app_init, setAppInit] = useState('1'); 
     const [app_status, setStatus] = useState('Initial');
-    const [location, setLocation] = useState('');
+    const [location, setLocation] = useState(''); 
+    const [location_pre, setLocationPre] = useState(''); // For turning search icon to refresh, cause you refresh data when searching the same thing.
     
-
-    // Weather info source
-    // API source: https://openweathermap.org/
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${openweather_api()}&units=${unit}`;
+    // For passing states to setInterval
+    // https://github.com/facebook/react/issues/14010
+    // https://upmostly.com/tutorials/settimeout-in-react-components-using-hooks
+    const locationRef = useRef(location); locationRef.current = location;
+    const unitRef = useRef(unit); unitRef.current = unit;
     
     // Set user current location as default
     // API source: https://locationiq.com/
@@ -44,25 +49,26 @@ function WeatherInfo({color_mode, unit}) {
             axios.get("https://us1.locationiq.com/v1/reverse.php?key=pk.e3db4461beb1fe1f9b33ecaa7ff62569&lat=" + lat + "&lon=" + lon + "&format=json")
             .then((response) => {
                 debug_output ? (() => {console.log(`Location API response:`);console.log(response.data);console.log("")})() : void(0);
+                var location_local= null;
 
                 if (response.data.address.suburb) {
-                    setLocation(response.data.address.suburb);
+                    location_local = response.data.address.suburb;
                 }
                 else if (response.data.address.county) {
-                    setLocation(response.data.address.county);
+                    location_local = response.data.address.county;
                 }
                 else if (response.data.address.neighbourhood) {
-                    setLocation(response.data.address.neighbourhood);
+                    location_local = response.data.address.neighbourhood;
                 }
                 else if (response.data.address.city) {
-                    setLocation(response.data.address.city)
+                    location_local = response.data.address.city;
                 }
-                
+                setLocation(location_local);
+                document.getElementById("location-search-input").value = ""; // Clear search input field
                 setStatus('Ok');
             })
             .catch((error) => {
                 debug_output ? (() => {console.log(`Location API error: ${error.message}`);console.log("")})() : void(0);
-
                 setStatus(error.message);
             },[])
         })
@@ -78,7 +84,7 @@ function WeatherInfo({color_mode, unit}) {
     },[]);
     // Render the page to latest state after above useEffect changes location variable (React stays one step behind).
     // `app_init` acts as signal flag to prevent functions from undesirably execute more than once.
-    useEffect(()=>{
+    useEffect((e)=>{
         // Hook executed due to app initial launch
         if (app_init === '1') {
             void(0);
@@ -87,8 +93,8 @@ function WeatherInfo({color_mode, unit}) {
         // Change to `location` variable from currentLocation() causes another execution of this hook in the same
         // instance, we take this oppotunity to render the page to latest state with getWeatherData().
         else if (app_init === '2') {
-            getWeatherData();
-            setAppInit('x');
+            getWeatherData(e,true);
+            setAppInit('3');
         }
         // Every subsequence changes to `location` via the search bar will trigger this hook. We don't want that,
         // so this hook will do nothing at this point and onward.
@@ -98,12 +104,13 @@ function WeatherInfo({color_mode, unit}) {
         
     },[location]);
 
-    // Location search bar & handle
-    const getWeatherData = (event) => {
+    // Get weather data
+    // Weather data & API source: https://openweathermap.org/
+    const getWeatherData = (event, search_icon_click, this_location, this_unit) => {
         
         // Some user may execute this function by pressing the search icon, we make sure the function
         // don't check for key press (event.key) since there is none (prevent null variable error). 
-        if (!event) {
+        if (search_icon_click) {
             void(0);
         }
         // Since this function executes on every key the user presses (onKeyPress in <input/>),
@@ -115,32 +122,34 @@ function WeatherInfo({color_mode, unit}) {
             return null;
         }
 
-        debug_output ? console.log("Searching weather info from location...") : void(0);
+        // Determine which location and unit variable to use
+        var url;
+        if (this_location) { // If coming from setInterval, in which case location and unit will be blank, use passed variables this_* instead.
+            console.log("App: Current location is "+this_location);
+            url = `https://api.openweathermap.org/data/2.5/weather?q=${this_location}&appid=${openweather_api()}&units=${this_unit}`;
+        } else { // If coming from app function calls itself, in which case location and unit will be intact, use those as normal.
+            console.log("App: Current location is "+location);
+            url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${openweather_api()}&units=${unit}`;
+        }
+
         axios.get(url)
             // Get responses fron OpenWeather URL with location set
             .then((response) => {
                 debug_output ? console.log("OpenWeather URL:"+url) : void(0);
                 debug_output ? (() => {console.log(`OpenWeather Response:`);console.log(response.data);console.log("")})() : void(0);
 
-                setWeatherData(response.data);
+                setWeatherData(response.data); app_init === "3" ? setLocationPre(location) : void(0); 
                 setStatus('Ok');
             })
             // In case OpenWeather respond with error
             .catch((error) => {
                 debug_output ? (() => {console.log(`OpenWeather error: ${error.message}`);console.log("")})() : void(0);
-                /*
-                if (error.response) {
-                    console.log(error.response.status);
-                    setStatus(error.response.status);
-                }
-                else if (error.request) {
-                    setStatus(error.request);
-                }
-                else {
-                    setStatus(error.message);
-                }  
-                */ 
+
                 setStatus(error.message);
+                
+                // For preventing search icon from turning into refresh when unneeded 
+                setLocationPre('NA.');
+
                 setWeatherData({});
                 
             })
@@ -165,15 +174,15 @@ function WeatherInfo({color_mode, unit}) {
                     }} 
                     // Use the finished OpenWeather URL to get data
                     onKeyUp={(event) => {
-                        console.log(event.code);
+                        //console.log(event.code);
                         if (event.code === "Enter") {
-                            getWeatherData();
+                            getWeatherData(event,false);
                         }
                     }} 
                 />
                 <img 
-                    src={searchIcon} 
-                    onClick={function(e) {getWeatherData();}} 
+                    src={location === location_pre ? refreshIcon : searchIcon} 
+                    onClick={function(e) {getWeatherData(e,true);}} 
                     id="search-icon" 
                     class={`material-icons ${color_mode === "light" ? "icon-dark" : "icon-light"}`}>
                 </img>
@@ -182,21 +191,21 @@ function WeatherInfo({color_mode, unit}) {
         </div>
     );
     // Refresh weather data when switching between Metric and Imperial unit.
-    useEffect(() => {
-        getWeatherData();
+    useEffect((e) => {
+        getWeatherData(e,true);
     },[unit]);
     // Refresh weather data every 30 minutes
-    /*
-    useEffect(() => {
-        const intervalRefresh = setInterval(() => {
-            getWeatherData();
+    useEffect((e) => {
+        const intervalRefresh = setInterval((e) => {
+            getWeatherData(e, true, locationRef.current, unitRef.current); // Pass location and unit reference because states does not cross setInterval on its own.
             console.log("App: Weather information updated.");
-        }, 1800000);
+        }, 1800000); //Default 1800000ms
 
         return () => clearInterval(intervalRefresh);
+
+        
     },[])
-    */
-    
+
     // User current location button
     const user_location = (
         <div 
@@ -233,7 +242,7 @@ function WeatherInfo({color_mode, unit}) {
                 className={`temperature material-text${color_mode === "light"?"-dark-pure":"-light"}`}
             >
                 <h1 className="temperature-read">
-                    <span className="temperature-read-value">{Math.round(weather_data.main.temp)}</span> <span className="temperature-unit">{unit === "metric" ? <>°C</> : <>°F</>}</span>
+                    <span className="temperature-read-value">{Math.round(weather_data.main.temp)}</span> <span className="notranslate temperature-unit">{unit === "metric" ? <>°C</> : <>°F</>}</span>
                 </h1>
             </div>
         :
@@ -269,7 +278,7 @@ function WeatherInfo({color_mode, unit}) {
                 { //Feels like
                     weather_data.main.feels_like ?
                         <div className="temperature-feel">
-                            <span className="weather-info-extra-value">{Math.round(weather_data.main.feels_like)} <span className="temperature-unit">{unit === "metric" ? <>°C</> : <>°F</>}</span></span>
+                            <span className="weather-info-extra-value">{Math.round(weather_data.main.feels_like)} <span className="notranslate temperature-unit">{unit === "metric" ? <>°C</> : <>°F</>}</span></span>
                             <div>Feels like </div>
                         </div>
                     :
@@ -279,7 +288,7 @@ function WeatherInfo({color_mode, unit}) {
                     weather_data.wind.speed ?
                         <div className="wind">
                             
-                            <span className="weather-info-extra-value">{weather_data.wind.speed}  <span className="wind-unit">{unit === "metric" ? <>m/s</> : <>mph</>}</span></span>
+                            <span className="weather-info-extra-value">{weather_data.wind.speed}  <span className="notranslate wind-unit">{unit === "metric" ? <>m/s</> : <>mph</>}</span></span>
                             <div>Wind</div>
                         </div>
                     :
@@ -289,7 +298,7 @@ function WeatherInfo({color_mode, unit}) {
                     weather_data.main.humidity ?
                         <div className="humidity">
                             
-                            <span className="weather-info-extra-value">{weather_data.main.humidity} %</span>
+                            <span className="weather-info-extra-value notranslate">{weather_data.main.humidity} %</span>
                             <div>Humidity</div>
                         </div>
                     :
@@ -299,7 +308,7 @@ function WeatherInfo({color_mode, unit}) {
                     weather_data.main.pressure ?
                         <div className="pressure">
                             
-                            <span className="weather-info-extra-value">{weather_data.main.pressure} hPa</span>
+                            <span className="weather-info-extra-value notranslate">{weather_data.main.pressure} hPa</span>
                             <div>Pressure</div>
                         </div>
                     :

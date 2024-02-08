@@ -1,0 +1,22 @@
+.forecast-icon {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+
+    width: 58px;
+    height: 58px;
+
+    border-radius: var(--border-radius-input);
+
+    z-index: 2;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.forecast-icon:hover {
+    cursor: pointer;
+}
+.forecast-icon-logo {
+    width: 30px;
+}

@@ -1,7 +1,9 @@
 
 :root {
   --color-mode: light; color-scheme: only light; /*Light & Dark mode controlled by app logic, no need user agent involvement*/
+
   --bg-color-accent: #fff; /*See ./components/style_background.background.css*/
+  --bg-color-intensity: 98%; /*See ./components/style_background.background.css*/
 }
 
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
