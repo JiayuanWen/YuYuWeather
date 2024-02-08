@@ -1,23 +1,27 @@
 {
   "files": {
-    "main.css": "/YuYuWeather/static/css/main.4f8d0b62.css",
-    "main.js": "/YuYuWeather/static/js/main.b2f61502.js",
+    "main.css": "/YuYuWeather/static/css/main.438ab25f.css",
+    "main.js": "/YuYuWeather/static/js/main.fcf0dcd3.js",
     "static/js/787.4bf51ab3.chunk.js": "/YuYuWeather/static/js/787.4bf51ab3.chunk.js",
     "index.html": "/YuYuWeather/index.html",
+    "static/media/refresh.svg": "/YuYuWeather/static/media/refresh.283e65bdb8ea0703ae3bd72e569f9c93.svg",
     "static/media/wifi_off.svg": "/YuYuWeather/static/media/wifi_off.e8b74683f59b69b5ff313b37e98a85bc.svg",
     "static/media/settings.svg": "/YuYuWeather/static/media/settings.2552a92fd3ea1b91afb4a690d0708b9b.svg",
+    "static/media/forecast.svg": "/YuYuWeather/static/media/forecast.51b75895702dcb14f41b77a8c45dea32.svg",
     "static/media/logo-github.svg": "/YuYuWeather/static/media/logo-github.f0843d48b095543a71d4e4f6809ca9d6.svg",
+    "static/media/earth_no.svg": "/YuYuWeather/static/media/earth_no.7bc902414709c8f67e230ae1a3b9aac4.svg",
+    "static/media/earth_search.svg": "/YuYuWeather/static/media/earth_search.5ed777c4648866ee6e9e4e8b2a29fbfd.svg",
     "static/media/search_icon.svg": "/YuYuWeather/static/media/search_icon.a66155d340e4b39741d9323b20d56b09.svg",
     "static/media/my_location.svg": "/YuYuWeather/static/media/my_location.d1c814b10fcbbc16d30f122e46935f7c.svg",
     "static/media/info.svg": "/YuYuWeather/static/media/info.60d430956951a2febfe10eacbcc038a4.svg",
     "static/media/open-new-tab.svg": "/YuYuWeather/static/media/open-new-tab.b22df5375c1739a8957638f279ed8706.svg",
     "static/media/close.svg": "/YuYuWeather/static/media/close.dd26bac30e254e0193115120fb087de2.svg",
-    "main.4f8d0b62.css.map": "/YuYuWeather/static/css/main.4f8d0b62.css.map",
-    "main.b2f61502.js.map": "/YuYuWeather/static/js/main.b2f61502.js.map",
+    "main.438ab25f.css.map": "/YuYuWeather/static/css/main.438ab25f.css.map",
+    "main.fcf0dcd3.js.map": "/YuYuWeather/static/js/main.fcf0dcd3.js.map",
     "787.4bf51ab3.chunk.js.map": "/YuYuWeather/static/js/787.4bf51ab3.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4f8d0b62.css",
-    "static/js/main.b2f61502.js"
+    "static/css/main.438ab25f.css",
+    "static/js/main.fcf0dcd3.js"
   ]
 }
