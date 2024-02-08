@@ -27,3 +27,6 @@ api.js
 
 # temporary files
 /temp
+
+# icon html code template
+icon_html.html
