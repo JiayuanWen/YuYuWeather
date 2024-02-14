@@ -11,6 +11,8 @@ App URL: https://jiayuanwen.github.io/YuYuWeather/
   * Humidity
   * Pressure
 
+* ### **5 day weather forecast**
+
 * ### **Switch between Metro and Imperial unit for readings**
   
 * ### **Change the accent colors to your favorite color**
