@@ -86,7 +86,7 @@ export default function Forecast({color_mode, unit, location, setLocation}) {
                     className={`forecast-entry material-text${color_mode === "light" ? "-dark" : "-light"} ${item.dt_txt}`}
                     key={item.dt_txt}
                 >
-    
+                    
                 </div>
             })
 

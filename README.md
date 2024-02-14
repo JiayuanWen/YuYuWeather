@@ -13,11 +13,14 @@ App URL: https://jiayuanwen.github.io/YuYuWeather/
 
 * ### **5 day weather forecast**
 
-* ### **Switch between Metro and Imperial unit for readings**
-  
+* ### **Switch between Metric and Imperial unit for readings**
+  <img src="./readme_resources/unit-switch.png" width="1280"/>
+
 * ### **Change the accent colors to your favorite color**
-  
+  <img src="./readme_resources/colorscheme-switch.png" width="1280"/>
+
 * ### **Light/Dark mode support**
+  <img src="./readme_resources/colormode-switch.png" width="1280"/>
 
 * ### **Mobile layouts**
 

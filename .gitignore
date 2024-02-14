@@ -30,3 +30,8 @@ api.js
 
 # icon html code template
 icon_html.html
+
+# krita backups
+*.png~
+*.jpg~
+*.kra
