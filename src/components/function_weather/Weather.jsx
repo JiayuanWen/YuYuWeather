@@ -23,11 +23,11 @@ import './weather.css';
 
 const debug_output = false;
 
-function WeatherInfo({color_mode, unit}) {
+function WeatherInfo({color_mode, unit, location, setLocation}) {
     const [weather_data, setWeatherData] = useState({});
     const [app_init, setAppInit] = useState('1'); 
     const [app_status, setStatus] = useState('Initial');
-    const [location, setLocation] = useState(''); 
+    //const [location, setLocation] = useState(''); 
     const [location_pre, setLocationPre] = useState(''); // For turning search icon to refresh, cause you refresh data when searching the same thing.
     
     // For passing states to setInterval

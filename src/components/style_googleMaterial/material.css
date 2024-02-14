@@ -2,13 +2,13 @@
     
     --color-primary: #008cff;
 
-    --color-primary-button: color-mix(in srgb,var(--color-primary),#000 40%);
+    --color-primary-button: color-mix(in srgb,var(--color-primary),#000 50%);
     --color-primary-button-dark: color-mix(in srgb,var(--color-primary),#fff 80%);
 
     --color-primary-container: color-mix(in srgb,var(--color-primary),#fff 80%);
-    --color-primary-container-dark: color-mix(in srgb,var(--color-primary),#000 50%);
+    --color-primary-container-dark: color-mix(in srgb,var(--color-primary),#000 60%);
 
-    --color-primary-text: color-mix(in srgb,var(--color-primary),#000 60%);
+    --color-primary-text: color-mix(in srgb,var(--color-primary),#000 70%);
     --color-primary-text-light: color-mix(in srgb,var(--color-primary),#fff 90%);
 
     --color-error: #aa1616;

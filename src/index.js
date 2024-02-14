@@ -25,9 +25,10 @@ import AppInfo from './components/function_appInfo/AppInfo';
 function App() {
   // Global states
   // See https://dev.to/andydziabo/how-to-pass-data-between-sibling-components-in-react-2cjg
+  const [location, setLocation] = useState('');
   const [color_mode, setColorMode] = useState(cookies.get('mode') ? cookies.get('mode') : 'light');
   const [unit, setUnit] = useState(cookies.get('unit') ? cookies.get('unit') : 'imperial');
-  const [app_version, setAppVersion] = useState('020802.2024'); 
+  const [app_version, setAppVersion] = useState('021417.2024'); 
 
   // Render
   return (
@@ -40,8 +41,8 @@ function App() {
       <Background/>
 
       {/*Site contents*/}
-      <WeatherInfo color_mode={color_mode} unit={unit}/>
-      <Forecast color_mode={color_mode}/>
+      <WeatherInfo color_mode={color_mode} unit={unit} location={location} setLocation={setLocation}/>
+      <Forecast color_mode={color_mode} unit={unit} location={location} setLocation={setLocation}/>
       
       {/*Misc*/}
       <Settings setColorMode={setColorMode} color_mode={color_mode} setUnit={setUnit} unit={unit} app_version={app_version}/>

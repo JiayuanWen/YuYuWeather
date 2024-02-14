@@ -1,3 +1,4 @@
+/* Icon */
 .forecast-icon {
     position: absolute;
     bottom: 10px;
@@ -7,6 +8,8 @@
     height: 58px;
 
     border-radius: var(--border-radius-input);
+
+    opacity: 0;
 
     z-index: 2;
 
@@ -19,4 +22,39 @@
 }
 .forecast-icon-logo {
     width: 30px;
+}
+
+/* Main window */
+.forecast-window {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+
+    z-index: 2;
+
+    width: 1050px;
+    height: 600px;
+
+    transition: 0.2s;
+
+    border-radius: var(--border-radius-container);
+
+    opacity: 1;
+}
+
+/* Close button */
+.forecast-close {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+
+    width: 30px;
+
+    opacity: 0.3;
+
+    transform: rotate(45deg);
+}
+.forecast-close:hover {
+    cursor: pointer;
+    opacity: 1;
 }

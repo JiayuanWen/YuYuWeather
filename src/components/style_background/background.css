@@ -1,7 +1,7 @@
 
 .background {
     /*--bg-color-accent: #fff;*/ /*See index.css*/
-    /*--bg-color-intensity: #fff;*/ /*See index.css*/
+    /*--bg-color-intensity: ;*/ /*See index.css*/
 
     --bg-color-1: color-mix(in srgb,var(--color-primary),var(--bg-color-accent) var(--bg-color-intensity));
     --bg-color-2: color-mix(in srgb,var(--color-primary),var(--bg-color-accent) 70%);

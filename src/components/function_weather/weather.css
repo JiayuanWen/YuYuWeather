@@ -150,27 +150,50 @@
 @media  screen and (max-width: 715px), (max-height: 505px) {
     .weather-info-extra {
         position: absolute;
-        bottom: unset;
-        top: 500px;
+        top: unset;
+        bottom: 10px;
         left: 10px;
 
         margin-right: 10px;
 
         max-width: 700px; width: auto;
-        height: 500px;
+        height: 300px;
 
         flex-wrap: wrap;
 
-        font-size: 30px;
+        font-size: 5.5vw;
     }
 
     @media  screen and (max-width: 386px) {
         .weather-info-extra {    
+            position: absolute;
+            top: 500px;
+            bottom: unset;
+            left: 10px;
+
             margin-right: 10px;
     
             max-width: 700px; width: auto;
-            height: 800px;
+            height: 550px;
+
+            flex-wrap: wrap;
     
+            font-size: 30px;
+        }
+    }
+
+    @media  screen and (max-width: 320px) {
+        .weather-info-extra {    
+            position: absolute;
+            top: 500px;
+            bottom: unset;
+            left: 10px;
+
+            margin-right: 10px;
+    
+            max-width: 700px; width: auto;
+            height: 580px;
+
             flex-wrap: wrap;
     
             font-size: 30px;
@@ -183,9 +206,11 @@
     margin-left: 20px;
 
     display: block;
+    flex: 40%;
 
     text-align: center;
     font-weight: 300;
+    white-space: nowrap;
     
     align-items: center;
 }
@@ -193,6 +218,22 @@
     .weather-info-extra > div {
         margin-right: 20px;
         margin-left: 20px;
+    }
+}
+@media  screen and (max-width: 477px) {
+    .weather-info-extra > div {
+        margin-right: 20px;
+        margin-left: 20px;
+
+        flex: 30%;
+    }
+}
+@media  screen and (max-width: 320px) {
+    .weather-info-extra > div {
+        margin-right: 20px;
+        margin-left: 20px;
+
+        flex: 50%;
     }
 }
 .weather-info-extra-value {
