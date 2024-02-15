@@ -163,9 +163,19 @@ search-bar {
     background-color: var(--color-primary-container) !important;
     border-radius: var(--border-radius-container);
 }
+.material-container-light-pure {
+    background-color: rgba(255, 255, 255, 0.836) !important;
+    border-radius: var(--border-radius-container);
+    
+}
 .material-container-dark {
     background-color: var(--color-primary-container-dark) !important;
     border-radius: var(--border-radius-container);
+}
+.material-container-dark-pure {
+    background-color: rgba(0, 0, 0, 0.836) !important;
+    border-radius: var(--border-radius-container);
+    
 }
 
 /*Dark mode icons*/
@@ -175,6 +185,18 @@ search-bar {
 }
 .icon-dark {
     filter: invert(0%) sepia(14%) saturate(7490%) hue-rotate(336deg) brightness(90%) contrast(95%) !important;
+}
+
+/*Container Outline*/
+.material-outline-dark {
+    border-color: var(--color-primary-container-dark);
+    border-style: solid;
+    border-width: 1px;
+}
+.material-outline-light {
+    border-color: var(--color-primary-container);
+    border-style: solid;
+    border-width: 1px;
 }
 
 /*Text*/

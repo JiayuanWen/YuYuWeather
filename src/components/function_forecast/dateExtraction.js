@@ -1,4 +1,4 @@
-export function dataExtraction(timestamp, mode) {
+export function dateExtraction(timestamp, mode) {
     // Convert the timestamp to milliseconds
     const date = new Date(timestamp * 1000);
     
@@ -24,3 +24,20 @@ export function dataExtraction(timestamp, mode) {
 
     return date;
 }
+
+export function dateToMonthDay(date_string) {
+    const date = new Date(date_string);
+    const month = date.toLocaleString('default', { month: 'long' }).slice(0, 3);
+    const day = date.getDate();
+
+    return `${month}, ${day}`;
+}
+
+export function dateToTime(date_string) {
+    const timeStr = date_string.split(" ")[1];
+    const timeArr = timeStr.split(":");
+    const hour = timeArr[0];
+    const minute = timeArr[1];
+  
+    return `${hour}:${minute}`;
+  }

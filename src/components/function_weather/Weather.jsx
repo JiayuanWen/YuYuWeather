@@ -21,7 +21,7 @@ import { getCoord } from './getCoordintes';
 import './weather.css';
 
 
-const debug_output = false;
+const debug_output = true;
 
 function WeatherInfo({color_mode, unit, location, setLocation}) {
     const [weather_data, setWeatherData] = useState({});

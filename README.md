@@ -12,11 +12,12 @@ App URL: https://jiayuanwen.github.io/YuYuWeather/
   * Pressure
 
 * ### **5 day weather forecast**
+<img src="./readme_resources/forecast.png" width="1280"/>
 
 * ### **Switch between Metric and Imperial unit for readings**
 <img src="./readme_resources/unit-switch.png" width="1280"/>
 
-* ### **Change the accent colors to your favorite color**
+* ### **Tweak your favorite accent color**
 <img src="./readme_resources/colorscheme-switch.png" width="1280"/>
 
 * ### **Light/Dark mode support**

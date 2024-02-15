@@ -8,12 +8,13 @@ import closeIcon from '../function_settings/close.svg'
 
 // Functions
 import { openweather_api } from "../function_weather/api";
-import { dataExtraction } from "./dateExtraction";
+import { dateExtraction, dateToMonthDay, dateToTime } from "./dateExtraction";
+import { weatherIcon } from "../function_weather/weatherIcon";
 
 // Stylesheets
 import './forecast.css'
 
-const debug_output = true;
+const debug_output = false;
 
 export default function Forecast({color_mode, unit, location, setLocation}) {
     const [windowVisible, setWindowVisible] = useState(false);
@@ -76,16 +77,92 @@ export default function Forecast({color_mode, unit, location, setLocation}) {
         </div>
     );
 
+    // Forecast title
+    const forecast_title_show = {
+        transitionDelay: "0.3s"
+    }
+    const forecast_title_hide = {
+
+    }
+    const forecast_title = (
+        <div
+            className={`forecast-title ${windowVisible ? "" : "forecast-title-hide"}`}     
+            style={windowVisible ? forecast_title_show : forecast_title_hide}   
+        >
+            Forecast
+        </div>
+    )
+
     // Forecast data
+    const forecast_show = {
+        opacity: 1,
+        transition: "0.3s",
+        transitionDelay: "0.2s" 
+    }
+    const forecast_hide = {
+        opacity: 0,
+        transitionDelay: "0s" 
+    }
     const forecast_list = (
         forecastData.list ?
 
             forecastData.list.map((item) => {
-                console.log(item)
+                debug_output ? console.log(item): void(0);
                 return <div
-                    className={`forecast-entry material-text${color_mode === "light" ? "-dark" : "-light"} ${item.dt_txt}`}
+                    className={`
+                        forecast-entry 
+                        material-text${color_mode === "light" ? "-dark" : "-light"} 
+                        material-outline${color_mode === "light" ? "-dark" : "-light"} 
+                        ${item.dt_txt}
+                    `}
+                    style={windowVisible ? forecast_show : forecast_hide} 
                     key={item.dt_txt}
                 >
+                    {/* Date */}
+                    <div 
+                        className={`forecast-date material-text${color_mode === "light" ? "-dark" : "-light"} `}
+                    >
+                        {dateToMonthDay(item.dt_txt)}
+                    </div>
+                    {/* Date */}
+                    <div 
+                        className={`forecast-time material-text${color_mode === "light" ? "-dark" : "-light"} `}
+                    >
+                        {dateToTime(item.dt_txt)}
+                    </div>
+
+                    {/* Description icon */}
+                    <div 
+                        className={`forecast-desc material-text${color_mode === "light" ? "-dark" : "-light"} `}
+                    >
+                        {weatherIcon(item.weather[0].main)}
+                    </div>
+                    {/* Temperature */}
+                    <div 
+                        className={`forecast-temp material-text${color_mode === "light" ? "-dark" : "-light"} `}
+                    >
+                        <div className={`forecast-temp-actual`}>{Math.round(item.main.temp)}{unit === "metric" ? "°C":"°F"}</div>
+                        <div className={`forecast-temp-feel`}>({Math.round(item.main.feels_like)}{unit === "metric" ? "°C":"°F"})</div>
+                    </div>
+
+                    {/* Wind speed */}
+                    <div 
+                        className={`forecast-wind material-text${color_mode === "light" ? "-dark" : "-light"} `}
+                    >
+                        <span class="material-icons-round">air</span> {item.wind.speed} {unit === "metric" ? <>m/s</> : <>mph</>}
+                    </div>
+                    {/* Humidity */}
+                    <div 
+                        className={`forecast-humidity material-text${color_mode === "light" ? "-dark" : "-light"} `}
+                    >
+                        <span class="material-icons-round">invert_colors</span> {item.main.humidity} %
+                    </div>
+                    {/* Air pressure */}
+                    <div 
+                        className={`forecast-pressure material-text${color_mode === "light" ? "-dark" : "-light"} `}
+                    >
+                        <span class="material-icons-round">speed</span> {item.main.pressure} hPa
+                    </div>
                     
                 </div>
             })
@@ -118,6 +195,9 @@ export default function Forecast({color_mode, unit, location, setLocation}) {
             className={`forecast-window material-container${color_mode === "light" ? "" : "-dark"} material-text${color_mode === "light" ? "-dark" : "-light"}`}
             style={windowVisible ? window_show : window_hide} 
         >
+            {/*Forecast title*/}
+            {forecast_title}
+
             {/*Forecast data*/}
             {forecasts}
 

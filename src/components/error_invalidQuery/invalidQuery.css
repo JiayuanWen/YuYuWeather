@@ -15,7 +15,7 @@
 
     text-align: center;
 
-    z-index: 8;
+    z-index: 3;
 }
 @media only screen and (max-width: 495px) {
     .invalid-query-prompt {
