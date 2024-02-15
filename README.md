@@ -11,7 +11,7 @@
   * Humidity
   * Pressure
 
-* ### **5 day weather forecast**
+* ### **5 days weather forecast**
 <img src="./readme_resources/forecast.png" width="1280"/>
 
 * ### **Switch between Metric and Imperial unit for readings**

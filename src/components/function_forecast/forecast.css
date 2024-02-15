@@ -103,6 +103,7 @@
     /*column-gap: 10px;*/
     
     overflow-x: scroll;
+    overflow-y: hidden;
 
     background-color: rgba(255, 0, 0, 0);
 
