@@ -71,7 +71,7 @@
     >
     > Your localhost port is different if you changed it following the *To change localhost port* section.
 
-    From now on, you may repeat the command from step 11 for future testings.
+    From now on, you may repeat the command from step 8 for future testings.
 
 
 </details>
