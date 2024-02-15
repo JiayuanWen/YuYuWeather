@@ -28,7 +28,7 @@ function App() {
   const [location, setLocation] = useState('');
   const [color_mode, setColorMode] = useState(cookies.get('mode') ? cookies.get('mode') : 'light');
   const [unit, setUnit] = useState(cookies.get('unit') ? cookies.get('unit') : 'imperial');
-  const [app_version, setAppVersion] = useState('021501.2024'); 
+  const [app_version, setAppVersion] = useState('021504.2024'); 
 
   // Render
   return (

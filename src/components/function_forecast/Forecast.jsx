@@ -10,6 +10,7 @@ import closeIcon from '../function_settings/close.svg'
 import { openweather_api } from "../function_weather/api";
 import { dateExtraction, dateToMonthDay, dateToTime } from "./dateExtraction";
 import { weatherIcon } from "../function_weather/weatherIcon";
+import { isMobile } from "../misc_scripts/mobileCheck";
 
 // Stylesheets
 import './forecast.css'
@@ -203,7 +204,7 @@ export default function Forecast({color_mode, unit, location, setLocation}) {
 
             {/*Close button*/}
             <img
-                className={`forecast-close icon${color_mode === "light" ? "-dark" : "-light"}`}
+                className={`forecast-close${isMobile() ? "-hide" : ""} icon${color_mode === "light" ? "-dark" : "-light"}`}
                 src={closeIcon}
                 alt="Close forecast button"
                 onClick={() => setWindowVisible(false)}
@@ -211,6 +212,13 @@ export default function Forecast({color_mode, unit, location, setLocation}) {
             </img>
         </div>
     );
+    // Visible by default for mobile
+    useEffect((e) => {
+        if (isMobile()) {
+            setWindowVisible(true);
+            console.log("MOBILE!!!");
+        }
+    },[]);
 
     return (
         <>

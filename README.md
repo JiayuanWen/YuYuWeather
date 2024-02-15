@@ -11,13 +11,13 @@
   * Humidity
   * Pressure
 
-* ### **5 days weather forecast**
+* ### **Weather forecast up to 5 days ahead**
 <img src="./readme_resources/forecast.png" width="1280"/>
 
 * ### **Switch between Metric and Imperial unit for readings**
 <img src="./readme_resources/unit-switch.png" width="1280"/>
 
-* ### **Tweak your favorite accent color**
+* ### **Tweak accent color**
 <img src="./readme_resources/colorscheme-switch.png" width="1280"/>
 
 * ### **Light/Dark mode support**
@@ -103,11 +103,11 @@
 * [React Color](https://casesandberg.github.io/react-color/)
 * [Material Web](https://m3.material.io/develop/web)
 
-### Data/API source
+### Data source
 * Weather data obtained from [Open Weather Map](https://openweathermap.org/)
 * User location data obtained from [LocationIQ](https://locationiq.com/)
 
-### Visual/Design
+### Visual design
 * App visual style mimics [Material You Design by Google](https://design.google/library/making-material-you).
 * Feature icons from [Ionicons](https://ionic.io/ionicons) and [Google Material Icons](https://fonts.google.com/icons).
 
