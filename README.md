@@ -1,4 +1,6 @@
-<img src="./readme_resources/title.png" width="1280"/>
+<p align="center">
+    <img src="./readme_resources/title.png" width="1280"/>
+</p>
 
 <h1 align="center">YuYu Weather</h1>
 <p align="center">Minimal and easy to use weather web app, quick glance at what's above ☀️☁️☔️.</p>
