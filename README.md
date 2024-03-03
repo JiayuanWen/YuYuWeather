@@ -4,8 +4,10 @@
 
 <h1 align="center">YuYu Weather</h1>
 <p align="center">Minimal and easy to use weather web app, quick glance at what's above ☀️☁️☔️.</p>
-
-<p align="center">App URL: https://jiayuanwen.github.io/YuYuWeather/</p>
+<br>
+<h3 align="center">App URL:</h3>
+<p align="center">https://jiayuanwen.github.io/YuYuWeather</p>
+<br>
 
 ## Features
 * ### **Weather info of your current location**
