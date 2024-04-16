@@ -29,7 +29,7 @@
 * ### **Light/Dark mode support**
 <img src="./readme_resources/colormode-switch.png" width="1280"/>
 
-* ### **Mobile layouts**
+<!--* ### **Mobile layouts**-->
 
 
 
