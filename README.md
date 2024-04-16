@@ -23,7 +23,7 @@
 * ### **Switch between Metric and Imperial unit for readings**
 <img src="./readme_resources/unit-switch.png" width="1280"/>
 
-* ### **Tweak accent color**
+* ### **Custom accent color**
 <img src="./readme_resources/colorscheme-switch.png" width="1280"/>
 
 * ### **Light/Dark mode support**
